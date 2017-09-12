@@ -1,0 +1,27 @@
+/* Chiquitines */
+
+/* Index
+    0. Globals
+        0.1. Variables
+        0.2. Animations
+    1. Index
+    2. Program
+    3. Clinic History
+ */
+
+/* 0. Globals */
+/* 0.1. Variables */
+@import 'globals/_variables.scss';
+/* 0.2. Animations */
+@import 'globals/_animations.scss';
+/* 0.2. Globals */
+@import 'globals/_globals.scss';
+
+/* 1. Index */
+@import 'modules/_index.scss';
+/* 2. Program */
+@import 'modules/_program.scss';
+/* 3. Clinic History */
+@import 'modules/_clinic_history.scss';
+/* 3. Personal Information */
+@import 'modules/_personal_information.scss';

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if request.user.is_authenticated %}
+		<h2>Bienvenido {{ request.user.username }}</h2>
+		{{ request.user.group.name }}
+		<ul class="list-unstyled">
+			<li>Nombre: {{ request.user.first_name }}</li>
+			<li>Apellido: {{ request.user.last_name }}</li>
+			<li>Correo: {{ request.user.email}}</li>
+		</ul>
+	{% else %}
+		<a href= "{% url 'login' %}">Iniciar Sesion</a>
+		<a href= "{% url 'signup' %}">Registrase</a>
+	{% endif %}
+{% endblock %}

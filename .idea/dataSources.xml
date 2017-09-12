@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="tesis@localhost" uuid="6c6c4854-4463-4d0d-9117-5610c08fa305">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/tesis</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="dtesis@localhost" uuid="eb76096a-29a4-4115-95b4-ca2ed2dba8d5">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/dtesis</jdbc-url>
+    </data-source>
+  </component>
+</project>
