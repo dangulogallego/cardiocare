@@ -50,3 +50,12 @@ class Paciente(models.Model):
     regimen_salud = models.ForeignKey(RegimenSalud, null=True)
     def __unicode__(self):
         return self.cod_paciente
+
+class HabitsAntecedents(models.Model):
+    paciente = models.ForeignKey(Paciente)
+    tabaquismo = models.BooleanField(default=False)
+    diabetes = models.BooleanField(default=False)
+    hipertension = models.BooleanField(default=False)
+    iam = models.BooleanField(default=False)
+    seguimiento = models.IntegerField(default=1)
+    fecha = models.DateField(auto_now=True)
