@@ -2,5 +2,12 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
+from .models import *
+
+
+admin.site.register(Examen)
+admin.site.register(PuntajeCategoria)
+admin.site.register(Observaciones)
+admin.site.register(TestAsa)
 
 # Register your models here.
