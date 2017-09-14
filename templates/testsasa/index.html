@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="tests-content" class="col col-md-8">
+	<h2>Test ASA</h2>
+	<p class="text-muted">INSTRUMENTO ASA(APPRAISAL OF SELF-CARE AGENCY SCALE) VALORACION DE LA ESCALA DE AUTOCUIDAD</p>
+	{% if tests %}
+		<table id="tests_tbl" class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Codigo Paciente</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Segundo Apellido</th>
+					<th>Puntaje</th>
+					<th>Fecha</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for test in tests  %}
+					<tr>
+						<th scope="row">{{test.pk}}</th>
+						<th>{{test.paciente.cod_paciente}}</th>
+						<th>{{test.paciente.nombre}}</th>
+						<th>{{test.paciente.primer_apellido}}</th>
+						<th>{{test.paciente.segundo_apellido}}</th>
+						<th>{{test.resultado}}</th>
+						<th>{{test.fecha}}</th>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+	<p class="text-center">
+		No se han encontrado resultados!
+	</p>
+	{% endif %}
+</div>
+{% endblock %}

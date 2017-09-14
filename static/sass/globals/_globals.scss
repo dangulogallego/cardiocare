@@ -1,176 +1,39 @@
-/* main: ../chiquitines.scss */
+/* main: ../app.scss */
 
 html,
-body{
-		padding-top: 35px;
-		font-family: $oswald;
-		font-size: 1rem;
+body {
+	font-family: $openSans;
+	font-size: 1rem;
 }
 
-h1{
-    color: $black;
+h1 {
+	color: $black;
 }
 
-a{
-	color: $red;
-  &:hover,
-  &:focus{
-		color: $red;
-    text-decoration: underline;
-  }
-}
-
-textarea.form-control{
-	resize: none
-}
-
-.table{
-	background-color: $white;
-}
-
-.container-fluid{
-	padding: 0;
-	.navbar-right{
-		margin-right: 20px;
+a {
+	background: transparent;
+	transition: background ease-in-out 0.5s;
+	will-change: background;
+	&:hover,
+	&:focus {
+		text-decoration: none;
 	}
 }
 
-.navbar-default{
-  margin-bottom: 0;
+textarea.form-control {
+	resize: none;
 }
 
-.navbar-brand{
-    font-size: 2.5rem;
-}
-
-.center-img{
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-._empty_photo{
-	width: 150px;
-	height: 150px;
-	background: $gray;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: auto;
-  &:hover,
-  &:focus{
-    text-decoration: none;
-  }
-	i{
-		color: $white;
-		font-size: 60px;
+button {
+	width: 100%;
+	background: $blue;
+	transition: background ease-in-out 0.5s;
+	will-change: background;
+	border: 0;
+	height: 40px;
+	color: $white;
+	&:hover,
+	&:focus {
+		background: $blue90;
 	}
-}
-
-body{
-  background: $grayblue;
-    #header{
-        padding: 50px 0;
-        margin: 0;
-    }
-    #content{
-        /*display: flex;
-        flex-flow: column wrap;
-        align-items: center;
-        */
-				min-height: 100vh;
-				padding-top: 40px;
-				padding-left: 30px;
-				padding-right: 30px;
-				padding-bottom: 40px;
-        overflow-x: scroll;
-				h1{
-					margin-top: 0;
-				}
-    }
-    #footer{
-
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 0;
-        z-index: 2;
-        position: relative;
-        span{
-            color: $graydark;
-        }
-    }
-}
-
-.red-text{
-  color: $red;
-}
-
-#topBar{
-	.navbar-nav>li>a{
-		text-transform: uppercase;
-		padding-top: 25px;
-		padding-bottom: 25px;
-	}
-	.navbar-nav>li>a:hover, .navbar-nav>li>a:focus{
-		background: $red;
-		color: $white;
-	}
-	.dropdown-menu>li>a{
-		padding: 10px 20px;
-	}
-	.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{
-		background: $red;
-		color: $white;
-	}
-	.navbar-nav>li>.dropdown-menu{
-		border-radius: 0;
-		padding: 0;
-	}
-	.dropdown-menu .divider{
-		margin: 0;
-	}
-}
-
-#logo{
-	padding: 10px 10px;
-}
-
-.navbar-default{
-	background: $white;
-	box-shadow: 0px 2px 10px $graydark;
-}
-
-#logo.navbar-brand{
-	height: 70px;
-	margin-left: 0;
-}
-
-#base-left-column{
-  background: $graydark url('/static/images/planets.png') no-repeat center 90%;
-	height: 100vh;
-	padding-top: 40px;
-	padding-left: 0;
-	padding-right: 0;
-	.nav>li>a{
-		color: $white;
-		font-weight: 300;
-		padding-left: 30px;
-		text-transform: uppercase;
-	}
-	.nav>li:hover>a, .nav>li:focus>a, .nav>li>a:focus, .nav>li>a:hover{
-		background: $red;
-	}
-}
-
-#base-right-column{
-  background: $white;
-  #head{
-    min-height: 60px;
-  }
-}
-
-#nbuMenu{
-	margin-bottom: 20px;
 }

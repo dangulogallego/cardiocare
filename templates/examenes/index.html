@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="examenes-content" class="col col-md-8">
+	<h2>Examenes Lip&iacute;dicos</h2>
+	{% if examenes %}
+		<table id="examenes_tbl" class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Codigo Paciente</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Segundo Apellido</th>
+					<th>Fecha Nacimiento</th>
+					<th>Regimen Salud</th>
+					<th>Fecha</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for examen in examenes  %}
+					<tr>
+						<th scope="row">{{examen.pk}}</th>
+						<th>{{examen.paciente.cod_paciente}}</th>
+						<th>{{examen.paciente.nombre}}</th>
+						<th>{{examen.paciente.primer_apellido}}</th>
+						<th>{{examen.paciente.segundo_apellido}}</th>
+						<th>{{examen.paciente.fecha_nacimiento}}</th>
+						<th>{{examen.paciente.regimen_salud}}</th>
+						<th>{{examen.fecha}}</th>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+	<p class="text-center">
+		No se han encontrado resultados!
+	</p>
+	{% endif %}
+</div>
+{% endblock %}

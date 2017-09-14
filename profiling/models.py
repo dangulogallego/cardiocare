@@ -48,6 +48,7 @@ class Paciente(models.Model):
     estrato = models.CharField(max_length=1, choices=ESTRATO)
     facultad = models.ForeignKey(Facultad, null=True)
     regimen_salud = models.ForeignKey(RegimenSalud, null=True)
+    fecha_creacion = models.DateField(auto_now=True)
     def __unicode__(self):
         return self.cod_paciente
 

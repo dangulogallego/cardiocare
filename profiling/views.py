@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
+from .models import Paciente
 
 def signUp(request):
     if request.method == 'POST':
@@ -18,3 +19,10 @@ def signUp(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+def home(request):
+    if request.user.is_authenticated():
+        pacientes = Paciente.objects.order_by('fecha_creacion')
+        return render(request, 'index.html', {'pacientes': pacientes})
+    else:
+        return redirect('login')

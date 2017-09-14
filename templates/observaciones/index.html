@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="observaciones-content" class="col col-md-8">
+	<h2>Observaciones</h2>
+	{% if observaciones %}
+		<table id="observaciones_tbl" class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Categor&iacute;a</th>
+					<th>Observaci&oacute;n</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for observacion in observaciones  %}
+					<tr>
+						<th scope="row">{{observacion.pk}}</th>
+						<th scope="row">{{observacion.categoria.nombre}}</th>
+						<th scope="row">{{observacion.observacion}}</th>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+	<p class="text-center">
+		No se han encontrado resultados!
+	</p>
+	{% endif %}
+</div>
+{% endblock %}

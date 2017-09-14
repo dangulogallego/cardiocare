@@ -1,11 +1,16 @@
 {% extends 'base.html' %} {% block title %}Login{% endblock %} {% block content %}
-<div class="row justify-content-center">
-  <div class="col-8 col-sm-6 col-lg-6">
-    <h2>Login</h2>
-    <form method="post">
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Login</button>
-    </form>
-  </div>
+<div id="login-container" class="col col-md-4 col-lg-4">
+  <h2 class="text-center">Inicio de sesi&oacute;n</h2>
+  <form method="post" id="login-form">
+    {% csrf_token %}
+    <ul class="list-unstyled">
+      {{ form.as_ul }}
+    </ul>
+    <button type="submit">Entra</button>
+  </form>
+  <h3 class="text-center">O</h3>
+  <p class="text-center">
+    Si no tienes cuenta, <a href="{% url 'signup' %}">registrate aqu&iacute;!</a>
+  </p>
 </div>
 {% endblock %}

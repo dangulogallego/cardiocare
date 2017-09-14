@@ -13,44 +13,38 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
     crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
 </head>
 
 <body>
   <div id="content">
-    <nav class="navbar navbar-expand-lg sticky-top justify-content-between">
-      <a class="navbar-brand" href="/">SSP</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pacientes</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{request.user.username}}
-              </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a>
-            </div>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'signup' %}">Registrarse</a>
-          </li>
-          {% endif %}
-
-        </ul>
-      </div>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'index' %}">HMS</a>
     </nav>
-    {% block content %}{% endblock %}
+
+  		<div class="container-fluid">
+  			<div class="row justify-content-md-center">
+          {% if request.user.is_authenticated %}
+    				<div class="col col-md-3">
+    					<div class="card" style="width: 20rem;">
+    					  <div class="card-body">
+    					    <h4 class="card-title">{{ request.user.first_name }} {{ request.user.last_name }}</h4>
+    					    <p class="card-text">Correo: {{ request.user.email}}</p>
+    					  </div>
+    					  <ul class="list-group list-group-flush">
+    					    <li class="list-group-item"><a href="{% url 'index' %}">Pacientes</a></li>
+    							<li class="list-group-item"><a href="{% url 'examenes' %}">Examenes</a></li>
+    							<li class="list-group-item"><a href="{% url 'observaciones' %}">Observaciones</a></li>
+    							<li class="list-group-item"><a href="{% url 'testsasa' %}">Tests ASA</a></li>
+    					    <li class="list-group-item"><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+    					  </ul>
+    					</div>
+    				</div>
+          {% endif %}
+  				{% block content %}{% endblock %}
+  			</div>
+  		</div>
   </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -60,6 +54,9 @@
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
     crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 </body>
 
 </html>

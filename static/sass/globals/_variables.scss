@@ -1,14 +1,18 @@
-/* main: ../chiquitines.scss */
+/* main: ../app.scss */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
 
 $black: #000;
-$white: #FFF;
-$red: #F01516;
-$gray: #CCC;
-$grayblue:#f1f4f5;
-$graydark: #4A4A4A;
-$blue: #4183C4;
+$white: #fff;
+$red: #f01516;
+$gray: #ccc;
+$grayblue: #f1f4f5;
+$graydark: #4a4a4a;
+$blue: #4183c4;
+$blue90: rgba(65, 131, 196, 0.9);
 
-$oswald: 'Oswald', sans-serif;
+$oswald: "Oswald", sans-serif;
+$openSans: "Open Sans", sans-serif;
 
 $s8px: 0.5714rem;
 $s9px: 0.6429rem;

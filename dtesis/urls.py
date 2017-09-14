@@ -19,13 +19,17 @@ from django.contrib.auth.views import login, logout, password_change, password_c
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
-from profiling.views import signUp
-
+from profiling.views import signUp, home
+from medical.views import examenes, observaciones, testasa
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
+    url(r'^$', home, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^login$', login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout$', logout, {'next_page': 'index'}, name='logout'),
     url(r'^signup/$', signUp, name='signup'),
+    url(r'^examenes/$', examenes, name='examenes'),
+    url(r'^observaciones/$', observaciones, name='observaciones'),
+    url(r'^tests-asa/$', testasa, name='testsasa'),
+
 ]

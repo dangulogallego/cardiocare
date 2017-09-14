@@ -4,6 +4,13 @@ from __future__ import unicode_literals
 from django.db import models
 from profiling.models import Paciente, HabitsAntecedents
 
+CHOICES = (
+    (1, 'Nunca'),
+    (2, 'Casi Nunca'),
+    (3, 'Casi Siempre'),
+    (4, 'Siempre'),
+)
+
 class Examen(models.Model):
     paciente = models.ForeignKey(Paciente)
     fecha = models.DateField(auto_now=True)
@@ -33,30 +40,30 @@ class Observaciones(models.Model):
 
 class TestAsa(models.Model):
     paciente = models.ForeignKey(Paciente)
-    p1 = models.IntegerField(default=0)
-    p2 = models.IntegerField(default=0)
-    p3 = models.IntegerField(default=0)
-    p4 = models.IntegerField(default=0)
-    p5 = models.IntegerField(default=0)
-    p6 = models.IntegerField(default=0)
-    p7 = models.IntegerField(default=0)
-    p8 = models.IntegerField(default=0)
-    p9 = models.IntegerField(default=0)
-    p10 = models.IntegerField(default=0)
-    p11 = models.IntegerField(default=0)
-    p12 = models.IntegerField(default=0)
-    p13 = models.IntegerField(default=0)
-    p14 = models.IntegerField(default=0)
-    p15 = models.IntegerField(default=0)
-    p16 = models.IntegerField(default=0)
-    p17 = models.IntegerField(default=0)
-    p18 = models.IntegerField(default=0)
-    p19 = models.IntegerField(default=0)
-    p20 = models.IntegerField(default=0)
-    p21 = models.IntegerField(default=0)
-    p22 = models.IntegerField(default=0)
-    p23 = models.IntegerField(default=0)
-    p24 = models.IntegerField(default=0)
+    p1 = models.IntegerField(choices=CHOICES)
+    p2 = models.IntegerField(choices=CHOICES)
+    p3 = models.IntegerField(choices=CHOICES)
+    p4 = models.IntegerField(choices=CHOICES)
+    p5 = models.IntegerField(choices=CHOICES)
+    p6 = models.IntegerField(choices=CHOICES)
+    p7 = models.IntegerField(choices=CHOICES)
+    p8 = models.IntegerField(choices=CHOICES)
+    p9 = models.IntegerField(choices=CHOICES)
+    p10 = models.IntegerField(choices=CHOICES)
+    p11 = models.IntegerField(choices=CHOICES)
+    p12 = models.IntegerField(choices=CHOICES)
+    p13 = models.IntegerField(choices=CHOICES)
+    p14 = models.IntegerField(choices=CHOICES)
+    p15 = models.IntegerField(choices=CHOICES)
+    p16 = models.IntegerField(choices=CHOICES)
+    p17 = models.IntegerField(choices=CHOICES)
+    p18 = models.IntegerField(choices=CHOICES)
+    p19 = models.IntegerField(choices=CHOICES)
+    p20 = models.IntegerField(choices=CHOICES)
+    p21 = models.IntegerField(choices=CHOICES)
+    p22 = models.IntegerField(choices=CHOICES)
+    p23 = models.IntegerField(choices=CHOICES)
+    p24 = models.IntegerField(choices=CHOICES)
     resultado = models.IntegerField(default=0)
     nombre = models.CharField(max_length=10, default="Baja")
     fecha = models.DateField(auto_now=True)
