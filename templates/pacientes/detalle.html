@@ -9,8 +9,9 @@
 		</a>
 
 		<div class="dropdown-menu" aria-labelledby="dropdownSettings">
-			<a href="#" class="dropdown-item"><i class="material-icons">edit</i>&nbsp;Editar</a>
+			<a href="{% url 'editarpaciente' paciente_pk=paciente.pk %}" class="dropdown-item"><i class="material-icons">edit</i>&nbsp;Editar</a>
 			<a href="#" class="dropdown-item"><i class="material-icons">note_add</i>&nbsp;Test ASA</a>
+			<a href="#" class="dropdown-item"><i class="material-icons">delete</i>&nbsp;Borrar</a>
 		</div>
 	</div>
 	<h2>Paciente: {{paciente.cod_paciente}}</h2>

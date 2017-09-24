@@ -20,13 +20,13 @@
 			<tbody>
 				{% for paciente in pacientes  %}
 					<tr>
-						<th scope="row">{{paciente.pk}}</th>
-						<th>{{paciente.cod_paciente}}</th>
-						<th>{{paciente.nombre}}</th>
-						<th>{{paciente.primer_apellido}}</th>
-						<th>{{paciente.segundo_apellido}}</th>
-						<th>{{paciente.fecha_nacimiento}}</th>
-						<th>{{paciente.regimen_salud}}</th>
+						<th scope="row"><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.pk}}</a></th>
+						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.cod_paciente}}</a></th>
+						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.nombre}}</a></th>
+						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.primer_apellido}}</a></th>
+						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.segundo_apellido}}</a></th>
+						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.fecha_nacimiento}}</a></th>
+						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.regimen_salud}}</a></th>
 					</tr>
 				{% endfor %}
 			</tbody>

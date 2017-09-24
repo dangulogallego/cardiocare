@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
-<div id="new-paciente-container" class="col col-md-8">
-  <h2 class="text-center"><i class="material-icons">person_add</i>&nbsp;Nuevo Paciente</h2>
-  <form method="post" id="newPacienteForm">
+<div id="editar-paciente-container" class="col col-md-8">
+  <h2 class="text-center"><i class="material-icons">edit</i>&nbsp;Editar Paciente</h2>
+  <form method="post" id="editarPacienteForm">
     {% csrf_token %}
     {% for field in form %}
     <div class="row">
@@ -21,7 +21,7 @@
         <button type="submit" class="btn btn-primary text-center">Guardar</button>
       </div>
       <div class="col col-md-6 col-lg-6">
-        <a href="{% url 'index' %}" class="btn btn-danger text-center">Cancelar</a>
+        <a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}" class="btn btn-danger text-center">Cancelar</a>
       </div>
     </div>
   </form>
