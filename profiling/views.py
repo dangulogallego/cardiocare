@@ -32,10 +32,19 @@ def nuevo_paciente(request):
         if request.method == 'POST':
             form = PacienteForm(request.POST)
             if form.is_valid():
-                form.save()
+                paciente = form.save()
+                paciente.save()
+                print paciente.pk
                 return redirect('index')
         else:
             form = PacienteForm()
         return render(request, 'pacientes/form.html', {'form': form})
+    else:
+        return redirect('login')
+
+def detalle_paciente(request, paciente_pk):
+    if request.user.is_authenticated():
+        paciente = Paciente.objects.get(pk=paciente_pk)
+        return render(request, 'pacientes/detalle.html', {'paciente': paciente})
     else:
         return redirect('login')

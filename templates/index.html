@@ -2,9 +2,9 @@
 
 {% block content %}
 <div id="pacientes-content" class="col col-md-8">
-	<a href="{% url 'nuevopaciente' %}" class="btn btn-primary float-right"><i class="material-icons">add</i>&nbsp;<span>A&ntilde;adir</span></a>
+	<a href="{% url 'nuevopaciente' %}" class="btn btn-primary float-right"><i class="material-icons">person_add</i>&nbsp;<span>A&ntilde;adir</span></a>
 	<h2>Pacientes</h2>
-	{% if tests %}
+	{% if pacientes %}
 		<table id="pacientes_tbl" class="table table-hover">
 			<thead>
 				<tr>

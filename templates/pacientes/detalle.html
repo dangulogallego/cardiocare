@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="pacientes-content" class="col col-md-8">
+
+	<div class="dropdown float-right">
+		<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<i class="material-icons">settings</i>
+		</a>
+
+		<div class="dropdown-menu" aria-labelledby="dropdownSettings">
+			<a href="#" class="dropdown-item"><i class="material-icons">edit</i>&nbsp;Editar</a>
+			<a href="#" class="dropdown-item"><i class="material-icons">note_add</i>&nbsp;Test ASA</a>
+		</div>
+	</div>
+	<h2>Paciente: {{paciente.cod_paciente}}</h2>
+
+</div>
+{% endblock %}

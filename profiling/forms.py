@@ -17,15 +17,16 @@ class SignUpForm(UserCreationForm):
 
 
 class PacienteForm(ModelForm):
+    # = forms.DateField(input_formats=('%d/%m/%Y'), widget=forms.TextInput(attrs={'class': "datepicker form-control"}),)
     class Meta:
         model = Paciente
         fields = ('nombre', 'primer_apellido', 'segundo_apellido', 'cod_paciente', 'fecha_nacimiento', 'genero', 'telefono', 'estado_civil', 'estrato', 'facultad', 'regimen_salud')
         widgets = {
+            'cod_paciente': forms.TextInput(attrs={'class':'form-control'}),
             'nombre': forms.TextInput(attrs={'class':'form-control'}),
             'primer_apellido': forms.TextInput(attrs={'class':'form-control'}),
             'segundo_apellido': forms.TextInput(attrs={'class':'form-control'}),
-            'cod_paciente': forms.TextInput(attrs={'class':'form-control'}),
-            'fecha_nacimiento': forms.DateInput(attrs={'class':'datepicker form-control'}),
+            'fecha_nacimiento' : forms.DateInput(format='%d/%m/%y', attrs={'class':'form-control datepicker'}),
             'genero': forms.Select(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control'}),
             'estado_civil': forms.Select(attrs={'class':'form-control'}),

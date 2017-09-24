@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
-<div id="new-paciente-container" class="col col-sm-9 col-lg-9">
-  <h2 class="text-center">Nuevo Paciente</h2>
+<div id="new-paciente-container" class="col col-md-8">
+  <h2 class="text-center"><i class="material-icons">person_add</i>&nbsp;Nuevo Paciente</h2>
   <form method="post" id="newPacienteForm">
     {% csrf_token %}
     {% for field in form %}

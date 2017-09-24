@@ -19,7 +19,7 @@ from django.contrib.auth.views import login, logout, password_change, password_c
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
-from profiling.views import signUp, home, nuevo_paciente
+from profiling.views import *
 from medical.views import observaciones, test_asa, new_test_asa
 
 urlpatterns = [
@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^logout$', logout, {'next_page': 'index'}, name='logout'),
     url(r'^signup/$', signUp, name='signup'),
     url(r'^paciente/nuevo$', nuevo_paciente, name='nuevopaciente'),
+    url(r'^paciente/(?P<paciente_pk>[0-9]+)/$', detalle_paciente, name='editarpaciente'),
     url(r'^observaciones/$', observaciones, name='observaciones'),
     url(r'^asa/$', test_asa, name='asaform'),
     url(r'^asa/nuevo/$', new_test_asa, name='nuevoasaform'),
