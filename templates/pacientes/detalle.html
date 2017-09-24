@@ -10,11 +10,46 @@
 
 		<div class="dropdown-menu" aria-labelledby="dropdownSettings">
 			<a href="{% url 'editarpaciente' paciente_pk=paciente.pk %}" class="dropdown-item"><i class="material-icons">edit</i>&nbsp;Editar</a>
-			<a href="#" class="dropdown-item"><i class="material-icons">note_add</i>&nbsp;Test ASA</a>
+			<a href="{% url 'nuevoasaform' paciente_pk=paciente.pk %}" class="dropdown-item"><i class="material-icons">note_add</i>&nbsp;Test ASA</a>
 			<a href="#" class="dropdown-item"><i class="material-icons">delete</i>&nbsp;Borrar</a>
 		</div>
 	</div>
-	<h2>Paciente: {{paciente.cod_paciente}}</h2>
-
+	<div class="row">
+		<div class="col col-md-12">
+			<h2>Paciente: {{paciente.cod_paciente}}</h2>
+			<h3>Nombre: {{paciente.nombre}}&nbsp;{{paciente.primer_apellido}}&nbsp;{{paciente.segundo_apellido}}</h3>
+			<p class="creation-date">Fecha de creación: {{paciente.fecha_creacion}}</p>
+		</div>
+		<div class="col col-md-4">
+			<p>
+				Genero: <span>{% if paciente.genero == 'F' %}Femenino{% else %}Masculino{% endif %}</span>
+			</p>
+		</div>
+		<div class="col col-md-4">
+			<p>
+				Estado civil: <span>{{paciente.estado_civil}}</span>
+			</p>
+		</div>
+		<div class="col col-md-4">
+			<p>
+				Tel&eacute;fono: <span>{{paciente.telefono}}</span>
+			</p>
+		</div>
+		<div class="col col-md-4">
+			<p>
+				Estrato: <span>{{paciente.estrato}}</span>
+			</p>
+		</div>
+		<div class="col col-md-4">
+			<p>
+				Facultad: <span>{{paciente.facultad}}</span>
+			</p>
+		</div>
+		<div class="col col-md-4">
+			<p>
+				Regimen de salud: <span>{{paciente.regimen_salud}}</span>
+			</p>
+		</div>
+	</div>
 </div>
 {% endblock %}

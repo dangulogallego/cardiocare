@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from .models import Observaciones, Examen
 from .forms import ASATestForm
+from profiling.models import Paciente
 
 def observaciones(request):
     if request.user.is_authenticated():
@@ -19,15 +20,16 @@ def test_asa(request):
     else:
         return redirect('login')
 
-def new_test_asa(request):
+def new_test_asa(request, paciente_pk):
     if request.user.is_authenticated():
+        paciente = Paciente.objects.get(pk=paciente_pk)
         if request.method == 'POST':
-            form = ASATestForm(request.POST)
+            form = ASATestForm(request.POST, paciente=paciente)
             if form.is_valid():
                 form.save()
                 return redirect('index')
         else:
-            form = ASATestForm()
-        return render(request, 'examenes/form.html', {'form': form})
+            form = ASATestForm(paciente=paciente)
+        return render(request, 'examenes/form.html', {'form': form, 'paciente': paciente})
     else:
         return redirect('login')

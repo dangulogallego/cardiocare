@@ -37,7 +37,25 @@ nav {
 #pacientes-content {
 	overflow: auto;
 	h2 {
-		margin-bottom: 40px;
+		margin-bottom: 20px;
+		border-bottom: 1px solid $gray;
+		padding-bottom: 25px;
+	}
+	.creation-date {
+		margin-bottom: 20px;
+		border-bottom: 1px solid #ccc;
+		padding-bottom: 25px;
+		color: $blue;
+		font-style: italic;
+	}
+	p {
+		font-weight: bold;
+		color: $graydark;
+		span {
+			font-weight: 300;
+			font-style: italic;
+			display: block;
+		}
 	}
 }
 

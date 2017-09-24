@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^paciente/(?P<paciente_pk>[0-9]+)/$', detalle_paciente, name='detallepaciente'),
     url(r'^paciente/(?P<paciente_pk>[0-9]+)/editar/$', editar_paciente, name='editarpaciente'),
     url(r'^observaciones/$', observaciones, name='observaciones'),
-    url(r'^asa/$', test_asa, name='asaform'),
-    url(r'^asa/nuevo/$', new_test_asa, name='nuevoasaform'),
+    url(r'^asa/$', test_asa, name='testsasa'),
+    url(r'^asa/paciente/(?P<paciente_pk>[0-9]+)/$', new_test_asa, name='nuevoasaform'),
 
 ]
