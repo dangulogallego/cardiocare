@@ -5,8 +5,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 GENERO = (
-    ('F', 'F'),
-    ('M', 'M'),
+    ('F', 'Femenino'),
+    ('M', 'Masculino'),
 )
 
 ESTADO_CIVL = (

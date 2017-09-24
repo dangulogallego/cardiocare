@@ -37,3 +37,19 @@ button {
 		background: $blue90;
 	}
 }
+
+form {
+	.row {
+		margin-bottom: 10px;
+		align-items: center;
+		height: 60px;
+		label {
+			margin: 0;
+		}
+	}
+}
+
+.btn {
+	display: flex;
+	align-items: center;
+}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+<div id="new-paciente-container" class="col col-sm-9 col-lg-9">
+  <h2 class="text-center">Nuevo Paciente</h2>
+  <form method="post" id="newPacienteForm">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="row">
+      <div class="col col-md-6 col-lg-6">
+        {{ field.label_tag }}
+      </div>
+      <div class="col col-md-6 col-lg-6">
+        {{ field }}
+      </div>
+      {% for error in field.errors %}
+        <p style="color: red">{{ error |safe }}</p>
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <button type="submit">Guardar</button>
+  </form>
+</div>
+{% endblock %}

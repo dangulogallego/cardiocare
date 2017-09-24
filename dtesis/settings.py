@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'dtesis.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dtesis2',
+        'NAME': 'dtesis4',
         'USER': 'admin',
         'PASSWORD': '4dm1n',
         'HOST': '127.0.0.1',

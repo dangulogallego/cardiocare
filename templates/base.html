@@ -13,7 +13,9 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
     crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="{% static 'css/datepicker.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
 </head>
 
@@ -34,9 +36,7 @@
     					  </div>
     					  <ul class="list-group list-group-flush">
     					    <li class="list-group-item"><a href="{% url 'index' %}">Pacientes</a></li>
-    							<li class="list-group-item"><a href="{% url 'examenes' %}">Examenes</a></li>
     							<li class="list-group-item"><a href="{% url 'observaciones' %}">Observaciones</a></li>
-    							<li class="list-group-item"><a href="{% url 'testsasa' %}">Tests ASA</a></li>
     					    <li class="list-group-item"><a href="{% url 'logout' %}">Cerrar sesión</a></li>
     					  </ul>
     					</div>
@@ -56,6 +56,8 @@
     crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/datepicker.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/datepicker.es.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 </body>
 

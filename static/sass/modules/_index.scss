@@ -1,31 +1,5 @@
 /* main: ../app.scss */
 
-// .form-signin {
-// 	max-width: 330px;
-// 	padding: 15px;
-// 	margin: 0 auto;
-//
-// 	.form-signin-heading {
-// 		margin-bottom: 15px;
-// 	}
-//
-// 	#inputEmail,
-// 	#inputPass {
-// 		height: 40px;
-// 		font-size: 16px;
-// 	}
-// 	#inputEmail {
-// 		margin-bottom: -1px;
-// 		border-bottom-right-radius: 0;
-// 		border-bottom-left-radius: 0;
-// 	}
-// 	#inputPass {
-// 		margin-bottom: 10px;
-// 		border-top-left-radius: 0;
-// 		border-top-right-radius: 0;
-// 	}
-// }
-
 nav {
 	margin-bottom: 20px;
 }
@@ -61,5 +35,5 @@ nav {
 }
 
 #pacientes-content {
-	overflow: scroll;
+	overflow: auto;
 }

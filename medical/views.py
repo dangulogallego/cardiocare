@@ -2,14 +2,8 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from .models import Examen, Observaciones, TestAsa
-
-def examenes(request):
-    if request.user.is_authenticated():
-        examenes = Examen.objects.order_by('fecha')
-        return render(request, 'examenes/index.html', {'examenes': examenes})
-    else:
-        return redirect('login')
+from .models import Observaciones, Examen
+from .forms import ASATestForm
 
 def observaciones(request):
     if request.user.is_authenticated():
@@ -18,9 +12,22 @@ def observaciones(request):
     else:
         return redirect('login')
 
-def testasa(request):
+def test_asa(request):
     if request.user.is_authenticated():
-        tests = TestAsa.objects.order_by('fecha')
+        tests = Examen.objects.filter(tipo__nombre="Test Asa")
         return render(request, 'testsasa/index.html', {'tests': tests})
+    else:
+        return redirect('login')
+
+def new_test_asa(request):
+    if request.user.is_authenticated():
+        if request.method == 'POST':
+            form = ASATestForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('index')
+        else:
+            form = ASATestForm()
+        return render(request, 'examenes/form.html', {'form': form})
     else:
         return redirect('login')

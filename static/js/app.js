@@ -70,5 +70,7 @@
 				}
 			});
 		});
+
+		$('.datepicker').datepicker({language: 'es-ES'});
 	});
 })(jQuery);
