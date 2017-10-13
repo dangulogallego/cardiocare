@@ -37,14 +37,16 @@
 			"#pacientes_tbl",
 			"#observaciones_tbl",
 			"#tests_tbl",
-			"#examenes_tbl"
+			"#examenes_tbl",
+			"#habits_tbl",
+			"#lipidicos_tbl"
 		].forEach(function(table) {
 			$(table).DataTable({
 				language: {
 					sProcessing: "Procesando...",
 					sLengthMenu: "Mostrar _MENU_ registros",
 					sZeroRecords: "No se encontraron resultados",
-					sEmptyTable: "NingÃºn dato disponible en esta tabla",
+					sEmptyTable: "Ningún dato disponible en esta tabla",
 					sInfo:
 						"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
 					sInfoEmpty:
@@ -57,7 +59,7 @@
 					sLoadingRecords: "Cargando...",
 					oPaginate: {
 						sFirst: "Primero",
-						sLast: "Ãšltimo",
+						sLast: "Último",
 						sNext: "Siguiente",
 						sPrevious: "Anterior"
 					},

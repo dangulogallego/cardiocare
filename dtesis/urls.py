@@ -15,17 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.contrib.auth.views import login, logout, password_change, password_change_done
+from django.contrib.auth.views import login, logout, password_change, password_change_done, LoginView
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
 from profiling.views import *
-from medical.views import observaciones, test_asa, new_test_asa
+from medical.views import *
 
 urlpatterns = [
     url(r'^$', home, name='index'),
     url(r'^admin/', admin.site.urls),
-    url(r'^login$', login, {'template_name': 'login.html'}, name='login'),
+    # url(r'^login$', login, {'template_name': 'login.html'}, name='login'),
+    url(r'^login/$', LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout$', logout, {'next_page': 'index'}, name='logout'),
     url(r'^signup/$', signUp, name='signup'),
     url(r'^paciente/nuevo$', nuevo_paciente, name='nuevopaciente'),
@@ -34,5 +35,9 @@ urlpatterns = [
     url(r'^observaciones/$', observaciones, name='observaciones'),
     url(r'^asa/$', test_asa, name='testsasa'),
     url(r'^asa/paciente/(?P<paciente_pk>[0-9]+)/$', new_test_asa, name='nuevoasaform'),
+    url(r'^paciente/habitos-antecedentes/$', habitos_antecedentes, name='habitsantecedents'),
+    url(r'^paciente/(?P<paciente_pk>[0-9]+)/habitos-antecedentes/$', nuevo_habitos_antecedentes, name='newhabitsantecedents'),
+    url(r'^paciente/examenes/lipidicos/$', test_fatty, name='lipidicos'),
+    url(r'^examen/lipidico/paciente/(?P<paciente_pk>[0-9]+)/$', new_test_fatty, name='nuevolipidicoform'),
 
 ]

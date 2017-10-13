@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="tests-content" class="col col-md-8">
+	<a href="{% url 'newhabitsantecedents' paciente_pk=request.user.paciente.pk %}" class="btn btn-primary float-right"><i class="material-icons">healing</i>&nbsp;H&aacute;bitos y Antecedentes</a>
+	<h2>H&aacute;bitos y Antecedentes</h2>
+
+	{% if habits %}
+		<table id="habits_tbl" class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Codigo Paciente</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Segundo Apellido</th>
+					<th>Fecha</th>
+					<th>Seguimiento</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for habit in habits  %}
+					<tr>
+						<th scope="row">{{habit.pk}}</th>
+						<th>{{habit.paciente.cod_paciente}}</th>
+						<th>{{habit.paciente.nombre}}</th>
+						<th>{{habit.paciente.primer_apellido}}</th>
+						<th>{{habit.paciente.segundo_apellido}}</th>
+						<th>{{habit.fecha}}</th>
+						<th>{{habit.seguimiento}}</th>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+	<p class="text-center">
+		No se han encontrado resultados!
+	</p>
+	{% endif %}
+</div>
+{% endblock %}

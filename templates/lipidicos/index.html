@@ -2,11 +2,10 @@
 
 {% block content %}
 <div id="tests-content" class="col col-md-8">
-	<a href="{% url 'nuevoasaform' paciente_pk=request.user.paciente.pk %}" class="btn btn-primary float-right"><i class="material-icons">note_add</i>&nbsp;Test ASA</a>
-	<h2>Test ASA</h2>
-	<p class="text-muted">INSTRUMENTO ASA(APPRAISAL OF SELF-CARE AGENCY SCALE) VALORACION DE LA ESCALA DE AUTOCUIDAD</p>
+	<a href="{% url 'nuevolipidicoform' paciente_pk=request.user.paciente.pk %}" class="btn btn-primary float-right"><i class="material-icons">note_add</i>&nbsp;Examen lip&iacute;dico</a>
+	<h2>Examenes lip&iacute;dicos</h2>
 	{% if tests %}
-		<table id="tests_tbl" class="table table-hover">
+		<table id="lipidicos_tbl" class="table table-hover">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -14,7 +13,6 @@
 					<th>Nombre</th>
 					<th>Apellido</th>
 					<th>Segundo Apellido</th>
-					<th>Puntaje</th>
 					<th>Fecha</th>
 				</tr>
 			</thead>
@@ -25,8 +23,7 @@
 						<th>{{test.paciente.cod_paciente}}</th>
 						<th>{{test.paciente.nombre}}</th>
 						<th>{{test.paciente.primer_apellido}}</th>
-						<th>{{test.calcularConceptual}}</th>
-						<th>{{test.resultado}}</th>
+						<th>{{test.paciente.segundo_apellido}}</th>
 						<th>{{test.fecha}}</th>
 					</tr>
 				{% endfor %}

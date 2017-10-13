@@ -25,7 +25,7 @@ SECRET_KEY = 'g2l%9d^4j27u(so1kj&b9@_&uit%c@4m+54m!(ua)yuhk&w4i9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["tesis.diego.com"]
+ALLOWED_HOSTS = ["tesis.diego.com", "192.168.0.14", "localhost"]
 
 
 # Application definition
@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'dtesis.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dtesis4',
-        'USER': 'admin',
-        'PASSWORD': '4dm1n',
+        'NAME': 'dtesis3',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.admin.widgets import AdminDateWidget
-from .models import Paciente
+from .models import Paciente, HabitsAntecedents
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=50, required=False, help_text='Opcional.')
@@ -17,7 +17,6 @@ class SignUpForm(UserCreationForm):
 
 
 class PacienteForm(ModelForm):
-    # = forms.DateField(input_formats=('%d/%m/%Y'), widget=forms.TextInput(attrs={'class': "datepicker form-control"}),)
     class Meta:
         model = Paciente
         fields = ('nombre', 'primer_apellido', 'segundo_apellido', 'cod_paciente', 'fecha_nacimiento', 'genero', 'telefono', 'estado_civil', 'estrato', 'facultad', 'regimen_salud')
@@ -34,3 +33,9 @@ class PacienteForm(ModelForm):
             'facultad': forms.Select(attrs={'class':'form-control'}),
             'regimen_salud': forms.Select(attrs={'class':'form-control'}),
         }
+
+
+class HabitsAntecedentsForm(ModelForm):
+    class Meta:
+        model = HabitsAntecedents
+        fields = ('tabaquismo', 'diabetes', 'hipertension', 'iam')

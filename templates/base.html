@@ -35,9 +35,15 @@
     					    <p class="card-text">Correo: {{ request.user.email}}</p>
     					  </div>
     					  <ul class="list-group list-group-flush">
-    					    <li class="list-group-item"><a href="{% url 'index' %}">Pacientes</a></li>
+                  {% if request.user.is_staff or request.user.is_superuser %}
+    					      <li class="list-group-item"><a href="{% url 'index' %}">Pacientes</a></li>
+                  {% endif %}
+                  <li class="list-group-item"><a href="{% url 'habitsantecedents' %}">H&aacute;bitos y antecedentes</a></li>
                   <li class="list-group-item"><a href="{% url 'testsasa' %}">Tests ASA</a></li>
-    							<li class="list-group-item"><a href="{% url 'observaciones' %}">Observaciones</a></li>
+                  <li class="list-group-item"><a href="{% url 'lipidicos' %}">Examenes Lip&iacute;dicos</a></li>
+                  {% if request.user.is_staff or request.user.is_superuser %}
+    					      <li class="list-group-item"><a href="{% url 'observaciones' %}">Observaciones</a></li>
+                  {% endif %}
     					    <li class="list-group-item"><a href="{% url 'logout' %}">Cerrar sesión</a></li>
     					  </ul>
     					</div>

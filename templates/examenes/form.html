@@ -1,6 +1,13 @@
 {% extends 'base.html' %} {% block content %}
 <div id="register-container" class="col col-sm-9 col-lg-9">
-  <h2 class="text-center">Examen</h2>
+  <h2 class="text-center">{{ title }}</h2>
+  <div class="row">
+    <div class="col col-md-12">
+      <h2>Paciente:&nbsp;<a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.cod_paciente}}</a></h2>
+      <h3>Nombre: {{paciente.nombre}}&nbsp;{{paciente.primer_apellido}}&nbsp;{{paciente.segundo_apellido}}</h3>
+      <p class="creation-date">Fecha de creación: {{paciente.fecha_creacion}}</p>
+    </div>
+  </div>
   <form method="post" id="examenForm">
     {% csrf_token %}
     {% for field in form %}
