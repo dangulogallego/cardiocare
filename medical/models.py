@@ -70,9 +70,9 @@ class Examen(models.Model):
 
     def calcularConceptual(self):
         if self.resultado == 24:
-            return 'Muy bajo'
+            return 'Muy baja'
         elif self.resultado > 24 and self.resultado <= 48:
-            return 'Bajo'
+            return 'Baja'
         elif self.resultado > 48 and self.resultado <= 72:
             return 'Media'
         elif self.resultado > 72 and self.resultado <= 96:
@@ -111,7 +111,7 @@ class Examen(models.Model):
     def calcularByLipidCategorias(self):
         data = []
         tmp = {}
-        asa_test = Examen.objects.filter(tipo__nombre="Test Asa").order_by('seguimiento').first()
+        asa_test = self.paciente.examenes.filter(tipo__nombre="Test Asa").order_by('seguimiento').first()
         answers = asa_test.respuestas.order_by('pregunta__categoria')
 
         for answer in answers:

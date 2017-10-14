@@ -75,6 +75,37 @@ class Paciente(models.Model):
         else:
             return 26
 
+    def getRecomendations(self):
+        data = []
+        tmp = {}
+        last_asa = self.examenes.filter(tipo__nombre="Test Asa").order_by('seguimiento').first()
+        answers = last_asa.respuestas.order_by('pregunta__categoria')
+        for answer in answers:
+            if answer.pregunta.categoria:
+                key = str(answer.pregunta.categoria.pk)
+                if key in tmp:
+                    points = tmp[key]['points'] + answer.valor
+                    tmp[key]['points'] = points
+                else:
+                    adata = {
+                        'points': answer.valor,
+                        'cat_nombre': answer.pregunta.categoria.nombre,
+                        'cat_minmala': answer.pregunta.categoria.minmala,
+                        'cat_maxmala': answer.pregunta.categoria.maxmala,
+                        'cat_minbuena': answer.pregunta.categoria.minbuena,
+                        'cat_maxbuena': answer.pregunta.categoria.maxbuena,
+                    }
+                    tmp[key] = adata
+                tmp[key]['observaciones'] = ""
+                if answer.valor >= answer.pregunta.categoria.minmala and answer.valor <= answer.pregunta.categoria.maxmala:
+                    for recomendation in answer.pregunta.categoria.observaciones.all():
+                        tmp[key]['observaciones'] += recomendation.observacion + ". "
+
+        for dt in tmp:
+            data.append(tmp[dt]['observaciones'])
+
+        return ''.join(str(x) for x in data)
+
     def smoke_points(self):
         last_habit = self.habits.order_by('seguimiento').first()
         if last_habit:
