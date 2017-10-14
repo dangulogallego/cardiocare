@@ -86,3 +86,14 @@ def new_test_fatty(request, paciente_pk):
         return render(request, 'examenes/form.html', {'form': form, 'paciente': paciente, 'title': 'Examen Lipídico'})
     else:
         return redirect('login')
+
+
+def get_single_test(request, test_pk):
+    if request.user.is_authenticated():
+        test = Examen.objects.get(pk=test_pk)
+        if test.tipo.nombre == "Test Asa":
+            return render(request, 'examenes/asa_detalle.html', {'test': test})
+        else:
+            return render(request, 'examenes/lipid_detalle.html', {'test': test})
+    else:
+        return redirect('login')

@@ -39,5 +39,8 @@ urlpatterns = [
     url(r'^paciente/(?P<paciente_pk>[0-9]+)/habitos-antecedentes/$', nuevo_habitos_antecedentes, name='newhabitsantecedents'),
     url(r'^paciente/examenes/lipidicos/$', test_fatty, name='lipidicos'),
     url(r'^examen/lipidico/paciente/(?P<paciente_pk>[0-9]+)/$', new_test_fatty, name='nuevolipidicoform'),
+    url(r'^examen/asa/(?P<test_pk>[0-9]+)/$', get_single_test, name='single_asa'),
+    url(r'^examen/lipidico/(?P<test_pk>[0-9]+)/$', get_single_test, name='single_lipidico'),
+
 
 ]

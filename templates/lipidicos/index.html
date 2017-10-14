@@ -19,12 +19,12 @@
 			<tbody>
 				{% for test in tests  %}
 					<tr>
-						<th scope="row">{{test.seguimiento}}</th>
-						<th>{{test.paciente.cod_paciente}}</th>
-						<th>{{test.paciente.nombre}}</th>
-						<th>{{test.paciente.primer_apellido}}</th>
-						<th>{{test.paciente.segundo_apellido}}</th>
-						<th>{{test.fecha}}</th>
+						<th scope="row"><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.seguimiento}}</a></th>
+						<th><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.paciente.cod_paciente}}</a></th>
+						<th><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.paciente.nombre}}</a></th>
+						<th><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.paciente.primer_apellido}}</a></th>
+						<th><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.paciente.segundo_apellido}}</a></th>
+						<th><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.fecha}}</a></th>
 					</tr>
 				{% endfor %}
 			</tbody>

@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from profiling.models import Paciente, HabitsAntecedents
+import json
 
 class PuntajeCategoria(models.Model):
     nombre = models.CharField(max_length=50, default="Default")
@@ -14,7 +15,7 @@ class PuntajeCategoria(models.Model):
         return self.nombre
 
 class Observaciones(models.Model):
-    categoria = models.ForeignKey(PuntajeCategoria)
+    categoria = models.ForeignKey(PuntajeCategoria, related_name="observaciones")
     observacion = models.TextField(null=True, blank=True)
     def __unicode__(self):
         return self.observacion
@@ -38,6 +39,11 @@ class Respuesta(models.Model):
     valor = models.FloatField(blank=True, null=True)
     def __unicode__(self):
         return str(self.pregunta.pk) + " : " + str(self.valor)
+
+    def value2Opcion(self):
+        value = int(self.valor)
+        opt = OpcionPregunta.objects.get(valor=value)
+        return opt
 
 class TipoExamen(models.Model):
     nombre = models.CharField(max_length=50, default="Test Asa")
@@ -66,26 +72,38 @@ class Examen(models.Model):
         if self.resultado == 24:
             return 'Muy bajo'
         elif self.resultado > 24 and self.resultado <= 48:
-            return 'Baja'
+            return 'Bajo'
         elif self.resultado > 48 and self.resultado <= 72:
             return 'Media'
         elif self.resultado > 72 and self.resultado <= 96:
             return 'Buena'
 
     def calcularCategorias(self):
-        data = {}
+        data = []
+        tmp = {}
         answers = self.respuestas.order_by('pregunta__categoria')
-        print data
         for answer in answers:
-            key = str(answer.pregunta.categoria.pk)
-            if key in data:
-                points = data[key]['points'] + answer.valor
-                data[key]['points'] = points
-            else:
-                adata = {
-                    'category': answer.pregunta.categoria,
-                    'points': answer.valor
-                }
-                data[key] = adata
-        print data
+            if answer.pregunta.categoria:
+                key = str(answer.pregunta.categoria.pk)
+                if key in tmp:
+                    points = tmp[key]['points'] + answer.valor
+                    tmp[key]['points'] = points
+                else:
+                    adata = {
+                        'points': answer.valor,
+                        'cat_nombre': answer.pregunta.categoria.nombre,
+                        'cat_minmala': answer.pregunta.categoria.minmala,
+                        'cat_maxmala': answer.pregunta.categoria.maxmala,
+                        'cat_minbuena': answer.pregunta.categoria.minbuena,
+                        'cat_maxbuena': answer.pregunta.categoria.maxbuena,
+                    }
+                    tmp[key] = adata
+                if answer.valor >= answer.pregunta.categoria.minmala and answer.valor <= answer.pregunta.categoria.maxmala:
+                    tmp[key]['observaciones'] = ""
+                    for recomendation in answer.pregunta.categoria.observaciones.all():
+                        tmp[key]['observaciones'] += recomendation.observacion + ". "
+                else:
+                    tmp[key]['observaciones'] = "Estás haciendo un excelente trabajo"
+            for dt in tmp:
+                data.append(tmp[dt])
         return data

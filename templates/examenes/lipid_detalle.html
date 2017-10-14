@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="pacientes-content" class="col col-md-8">
+
+	<div class="dropdown float-right">
+		<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<i class="material-icons">settings</i>
+		</a>
+
+		<div class="dropdown-menu" aria-labelledby="dropdownSettings">
+			<a href="#" class="dropdown-item"><i class="material-icons">delete</i>&nbsp;Borrar</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col col-md-12">
+			<h2>Paciente: {{test.paciente.cod_paciente}}</h2>
+			<h3>Nombre: {{test.paciente.nombre}}&nbsp;{{test.paciente.primer_apellido}}&nbsp;{{test.paciente.segundo_apellido}}</h3>
+			<p class="creation-date">Fecha de creación: {{test.paciente.fecha_creacion}}</p>
+		</div>
+    <div class="col col-md-12">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-answers-tab" data-toggle="pill" href="#pills-answers" role="tab" aria-controls="pills-answers" aria-expanded="true">Respuestas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-recomendations-tab" data-toggle="pill" href="#pills-recomendations" role="tab" aria-controls="pills-recomendations" aria-expanded="true">Observaciones</a>
+        </li>
+      </ul>
+		</div>
+    <div class="col col-md-12">
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-answers" role="tabpanel" aria-labelledby="pills-answers-tab">
+          <div class="col col-md-12">
+            <div class="row">
+              <div class="col col-md-6 col-lg-6">
+                <p>
+                  Resultado: <br/><span>{{test.paciente.calculateRCV.numeric}}</span>
+                </p>
+              </div>
+              <div class="col col-md-6 col-lg-6">
+                <p>
+                  Indicador: <br/><span>{{test.paciente.calculateRCV.conceptual}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-md-12">
+            <h3>Respuestas examen Lip&iacute;dico</h3><hr/>
+          </div>
+          {% for answer in test.respuestas.all  %}
+            <div class="col col-md-12">
+              <p>
+                {{answer.pregunta.texto}}: <br/><span>{{answer.valor}}</span>
+              </p>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="pills-recomendations" role="tabpanel" aria-labelledby="pills-recomendations-tab">
+          <div class="col col-md-12">
+            <div class="row">
+              {% for cat in test.calcularCategorias %}
+                <div class="col col-md-12">
+                  <p>
+                    {{cat.cat_nombre}}: <span>{{cat.points}} pts</span>
+                  </p>
+                  <p>{{cat.observaciones}}</p>
+                  <hr>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+	</div>
+</div>
+{% endblock %}
