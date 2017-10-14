@@ -104,6 +104,40 @@ class Examen(models.Model):
                         tmp[key]['observaciones'] += recomendation.observacion + ". "
                 else:
                     tmp[key]['observaciones'] = "Estás haciendo un excelente trabajo"
-            for dt in tmp:
-                data.append(tmp[dt])
+        for dt in tmp:
+            data.append(tmp[dt])
+        return data
+
+    def calcularByLipidCategorias(self):
+        data = []
+        tmp = {}
+        asa_test = Examen.objects.filter(tipo__nombre="Test Asa").order_by('seguimiento').first()
+        answers = asa_test.respuestas.order_by('pregunta__categoria')
+
+        for answer in answers:
+            key = str(answer.pregunta.categoria.pk)
+            if key in tmp:
+                points = tmp[key]['points'] + answer.valor
+                tmp[key]['points'] = points
+            else:
+                adata = {
+                    'points': answer.valor,
+                    'cat_nombre': answer.pregunta.categoria.nombre,
+                    'cat_minmala': answer.pregunta.categoria.minmala,
+                    'cat_maxmala': answer.pregunta.categoria.maxmala,
+                    'cat_minbuena': answer.pregunta.categoria.minbuena,
+                    'cat_maxbuena': answer.pregunta.categoria.maxbuena,
+                }
+                tmp[key] = adata
+            if answer.valor >= answer.pregunta.categoria.minmala and answer.valor <= answer.pregunta.categoria.maxmala:
+                tmp[key]['observaciones'] = ""
+                for recomendation in answer.pregunta.categoria.observaciones.all():
+                    tmp[key]['observaciones'] += recomendation.observacion + ". "
+            else:
+                tmp[key]['observaciones'] = "Estás haciendo un excelente trabajo"
+
+        for dt in tmp:
+            data.append(tmp[dt])
+
+        print data
         return data

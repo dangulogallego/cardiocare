@@ -59,7 +59,7 @@
         <div class="tab-pane fade" id="pills-recomendations" role="tabpanel" aria-labelledby="pills-recomendations-tab">
           <div class="col col-md-12">
             <div class="row">
-              {% for cat in test.calcularCategorias %}
+              {% for cat in test.calcularByLipidCategorias %}
                 <div class="col col-md-12">
                   <p>
                     {{cat.cat_nombre}}: <span>{{cat.points}} pts</span>
