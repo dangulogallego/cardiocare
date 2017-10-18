@@ -4,17 +4,26 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.admin.widgets import AdminDateWidget
-from .models import Paciente, HabitsAntecedents
+from .models import *
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=50, required=False, help_text='Opcional.')
-    last_name = forms.CharField(max_length=50, required=False, help_text='Opcional.')
-    email = forms.EmailField(max_length=254, help_text='Requerido. Ingrese un email válido.')
+    first_name = forms.CharField(max_length=50, required=False, help_text='Opcional.', widget=forms.TextInput(attrs={'class':'form-control'}))
+    last_name = forms.CharField(max_length=50, required=False, help_text='Opcional.', widget=forms.TextInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(max_length=254, help_text='Requerido. Ingrese un email válido.', widget=forms.EmailInput(attrs={'class':'form-control'}))
+    fecha_nacimiento = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control datepicker-register'}))
+    genero = forms.ChoiceField(choices=GENERO, widget=forms.Select(attrs={'class':'form-control'}))
+    telefono = forms.CharField(max_length=50, required=False, help_text='Opcional.', widget=forms.TextInput(attrs={'class':'form-control'}))
+    estado_civil = forms.ChoiceField(choices=ESTADO_CIVL, widget=forms.Select(attrs={'class':'form-control'}))
+    estrato = forms.ChoiceField(choices=ESTRATO, widget=forms.Select(attrs={'class':'form-control'}))
+    facultad = forms.ModelChoiceField(queryset=Facultad.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
+    regimen_salud = forms.ModelChoiceField(queryset=RegimenSalud.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
-
+        widgets = {
+            'username': forms.TextInput(attrs={'class':'form-control'}),
+        }
 
 class PacienteForm(ModelForm):
     class Meta:

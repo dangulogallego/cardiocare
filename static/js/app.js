@@ -32,6 +32,8 @@
 		$("label[for='id_password2']")
 			.closest("label")
 			.text(lang("password_confirm"));
+		$("#id_password1").addClass("form-control");
+		$("#id_password2").addClass("form-control");
 
 		[
 			"#pacientes_tbl",
@@ -74,5 +76,7 @@
 		});
 
 		$('.datepicker').datepicker({language: 'es-ES'});
+		$('.datepicker-register').datepicker({language: 'es-ES', format:"yyyy-mm-dd"});
+
 	});
 })(jQuery);

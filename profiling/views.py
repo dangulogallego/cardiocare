@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from .forms import SignUpForm, PacienteForm, HabitsAntecedentsForm
-from .models import Paciente, HabitsAntecedents
+from .models import Paciente, HabitsAntecedents, Facultad, RegimenSalud
 
 def signUp(request):
     if request.method == 'POST':
@@ -14,8 +14,20 @@ def signUp(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
+            paciente = Paciente(user=user)
+            paciente.nombre = user.first_name
+            paciente.primer_apellido = user.last_name
+            paciente.cod_paciente = user.username
+            paciente.fecha_nacimiento = form.cleaned_data.get('fecha_nacimiento')
+            paciente.genero = form.cleaned_data.get('genero')
+            paciente.telefono = form.cleaned_data.get('telefono')
+            paciente.estado_civil = form.cleaned_data.get('estado_civil')
+            paciente.estrato = form.cleaned_data.get('estrato')
+            paciente.facultad = form.cleaned_data.get('facultad')
+            paciente.regimen = form.cleaned_data.get('regimen')
+            paciente.save()
             login(request, user)
-            return redirect('index')
+            return redirect('newhabitsantecedents',paciente_pk=paciente.pk)
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
