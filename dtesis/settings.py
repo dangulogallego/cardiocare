@@ -93,29 +93,16 @@ WSGI_APPLICATION = 'dtesis.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'dtesis',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'dtesis.cfoay7ddgrgf.us-east-1.rds.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-
-if 'dtesis.cfoay7ddgrgf.us-east-1.rds.amazonaws.com' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ['dtesis'],
-            'USER': os.environ['postgres'],
-            'PASSWORD': os.environ['postgres'],
-            'HOST': os.environ['dtesis.cfoay7ddgrgf.us-east-1.rds.amazonaws.com'],
-            'PORT': os.environ['5432'],
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dtesis',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'dtesis.cfoay7ddgrgf.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
-
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
