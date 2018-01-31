@@ -2,19 +2,73 @@
 
 nav {
 	margin-bottom: 20px;
+	background: $green;
+}
+
+#login-container {
+	button {
+		background: $green;
+		margin-top: 25px;
+	}
+}
+
+#register-container {
+	.tests {
+		margin-top: 0 !important;
+		margin-bottom: 25px !important;
+		color: $gray-dark3 !important;
+	}
+	.singup-button {
+		margin: 0 auto;
+		button {
+			background: $orange;
+			margin-top: 40px;
+		}
+	}
+	.row {
+		h2 {
+			margin-bottom: 20px;
+			border-bottom: 1px solid #ccc;
+			padding-bottom: 25px;
+			margin-top: 0 !important;
+			color: $gray-dark3 !important;
+		}
+		p {
+			margin-bottom: 20px;
+			border-bottom: 1px solid #ccc;
+			padding-bottom: 25px;
+			color: $gray-dark2;
+			font-style: italic;
+		}
+	}
 }
 
 #login-container,
 #register-container {
 	h2 {
-		margin-bottom: 20px;
+		margin-bottom: 30px;
+		color: $orange;
 	}
 	form {
 		margin-bottom: 20px;
+		label {
+			color: $gray-dark2;
+		}
 		ul {
 			li {
-				margin-bottom: 10px;
+				ul.nonfield {
+					padding: 0;
+					color: #a94442;
+					background-color: #f2dede;
+					border-color: #ebccd1;
+					li {
+						padding: 10px 10px 10px 15px;
+					}
+				}
+				list-style: none;
+				margin-bottom: 25px;
 				label {
+					color: $gray-dark2;
 				}
 				input {
 					width: 100%;
@@ -29,29 +83,43 @@ nav {
 		margin-bottom: 20px;
 	}
 	p {
+		color: $gray-dark3;
 		a {
+			text-decoration: underline;
+			color: $orange;
 		}
+	}
+	.logo-loguin {
+		text-align: center;
+		margin-bottom: 50px;
 	}
 }
 
 #registerForm{
 	label{
-		font-weight: bold;
+		letter-spacing: 0;
+	}
+	._field {
+		padding-bottom: 30px;
 	}
 }
 
 #pacientes-content {
 	overflow: auto;
 	h2 {
+		color: $gray-dark3;
 		margin-bottom: 20px;
 		border-bottom: 1px solid $gray;
 		padding-bottom: 25px;
+	}
+	h3 {
+		color: $gray-dark3;
 	}
 	.creation-date {
 		margin-bottom: 20px;
 		border-bottom: 1px solid #ccc;
 		padding-bottom: 25px;
-		color: $blue;
+		color: $gray-dark2;
 		font-style: italic;
 	}
 	p {
@@ -61,16 +129,235 @@ nav {
 			font-weight: 300;
 			font-style: italic;
 			display: block;
+			color: $gray-dark2 !important;
 		}
 	}
 }
 
 #new-paciente-container {
 	h2 {
-		margin-bottom: 30px;
+		color: $gray-dark3;
+	}
+	h3 {
+		color: $gray-dark3;
+	}
+	.row {
+		h2 {
+	    margin-bottom: 20px;
+	    border-bottom: 1px solid #ccc;
+	    padding-bottom: 25px;
+			a {
+				color: $gray-dark3 !important;
+			}
+		}
+		p {
+			margin-bottom: 20px;
+	    border-bottom: 1px solid #ccc;
+	    padding-bottom: 25px;
+	    color: $gray-dark2;
+	    font-style: italic;
+		}
 	}
 }
 
-#content {
-	margin-bottom: 50px;
+// #content {
+// 	margin-bottom: 50px;
+// }
+
+#newHabitsForm {
+	.row {
+		height: auto;
+		ul {
+			padding-left: 0;
+			list-style: none;
+			li:first-child {
+				padding-right: 10px;
+			}
+			li {
+				display: inline-block;
+				color: $gray-dark2;
+				font-style: italic;
+			}
+		}
+		label {
+			color: $gray-dark3;
+		}
+	}
+	button {
+		background: $green;
+		width: 100%;
+		border: 0;
+		height: 40px;
+		color: #fff;
+		border-radius: inherit;
+	}
+	a {
+		background: $orange;
+		width: 100%;
+		border: 0;
+		height: 40px;
+		color: #fff;
+		border-radius: inherit;
+	}
+}
+
+#hamburguesa {
+	border: none !important;
+}
+
+.menuxs button:hover, .menuxs button:focus {
+	background: none;
+	border: none;
+	outline: none;
+}
+
+#landing-content {
+	ul {
+		li {
+			display: inline;
+			span {
+				color: $orange;
+				font-size: $s20px;
+				font-style: italic;
+				font-weight: 700;
+			}
+			p {
+				padding-left: 5px;
+			}
+		}
+	}
+	a.btn-primary {
+		background: $green;
+		border-radius: 0.72px;
+		color: #FFFFFF;
+		letter-spacing: 0;
+		border: none;
+		 margin-top: 40px;
+	}
+}
+
+#mobile-menu-content #_header a.close-submenu-mobile {
+	color: $orange;
+	background-color: $green;
+}
+
+#mobile-menu-content {
+	background-color: $green;
+	#_body {
+		ul {
+			padding-top: 5px;
+			li {
+				  margin: 10px 5px 10px 25px;
+				a {
+					color: $white;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}
+
+#editar-paciente-container {
+	h2 {
+		color: $gray-dark3;
+	}
+	label {
+		color: $gray-dark3;
+	}
+	button {
+		background: $green;
+		width: 100%;
+		border: 0;
+		height: 40px;
+		color: #fff;
+		border-radius: inherit;
+	}
+	a {
+		background: $orange;
+		width: 100%;
+		border: 0;
+		height: 40px;
+		color: #fff;
+		border-radius: inherit;
+	}
+}
+
+#habits_tbl, #tests_tbl, #lipidicos_tbl, #pacientes-content {
+	thead {
+		tr {
+			th {
+				color:$gray-dark3;
+			}
+		}
+	}
+	tbody {
+		tr {
+			th {
+				a {
+					font-style: italic;
+				}
+			}
+		}
+	}
+}
+
+#tests-content {
+	h2 {
+		color: $gray-dark3;
+	}
+	#habits_tbl_filter, #tests_tbl_filter {
+		color: $gray-dark3;
+	}
+}
+
+#examenForm {
+	label {
+		color: $gray-dark3 !important;
+	}
+	button {
+		background-color: $green !important;
+	}
+}
+
+#lipidicos_tbl_filter {
+	color: $gray-dark3;
+}
+
+#footer {
+  // left:0px;
+  // bottom:0px;
+  height:100px;
+  width:100%;
+	margin-top: 50px;
+	p {
+		color: white;
+		padding-top: 30px;
+		text-align: center;
+		font-weight: bold;
+		span {
+			font-size: 14px !important;
+			font-weight: normal !important;
+		}
+	}
+}
+
+.forgot_password {
+	text-align: center;
+	a {
+		font-size: 15px;
+		text-decoration: none !important;
+	}
+}
+
+.alert-error {
+	background-color: #f2dede;
+	border-color: #ebcccc;
+	color: #a94442;
+}
+
+.pearson {
+	margin-top: 5px;
+	margin-bottom: 15px;
+	font-style: italic;
+	color: $gray-dark3;
 }

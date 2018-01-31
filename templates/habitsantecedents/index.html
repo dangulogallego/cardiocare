@@ -1,33 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="tests-content" class="col col-md-8">
-	<a href="{% url 'newhabitsantecedents' paciente_pk=request.user.paciente.pk %}" class="btn btn-primary float-right"><i class="material-icons">healing</i>&nbsp;H&aacute;bitos y Antecedentes</a>
+<div id="tests-content" class="col col-md-10 col-lg-8">
+	{% if not request.user.is_staff %}
+		<a href="{% url 'newhabitsantecedents' paciente_pk=request.user.paciente.pk %}" class="btn btn-primary float-right"><i class="material-icons">healing</i>Nuevo</a>
+	{% endif %}
 	<h2>H&aacute;bitos y Antecedentes</h2>
 
 	{% if habits %}
-		<table id="habits_tbl" class="table table-hover">
+		<table id="habits_tbl" class="table table-hover table-responsive">
 			<thead>
 				<tr>
 					<th>#</th>
 					<th>Codigo Paciente</th>
 					<th>Nombre</th>
-					<th>Apellido</th>
+					<th>Primer Apellido</th>
 					<th>Segundo Apellido</th>
 					<th>Fecha</th>
-					<th>Seguimiento</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for habit in habits  %}
 					<tr>
-						<th scope="row">{{habit.pk}}</th>
-						<th>{{habit.paciente.cod_paciente}}</th>
-						<th>{{habit.paciente.nombre}}</th>
-						<th>{{habit.paciente.primer_apellido}}</th>
-						<th>{{habit.paciente.segundo_apellido}}</th>
-						<th>{{habit.fecha}}</th>
-						<th>{{habit.seguimiento}}</th>
+						{% if request.user.is_staff %}
+							<th scope="row"><a href="{% url 'single_habyant' habit_pk=habit.pk %}">{{forloop.counter}}</a></th>
+						{% else %}
+							<th scope="row"><a href="{% url 'single_habyant' habit_pk=habit.pk %}">{{habit.seguimiento}}</a></th>
+						{% endif %}
+						<th><a href="{% url 'single_habyant' habit_pk=habit.pk %}">{{habit.paciente.cod_paciente}}</a></th>
+						<th><a href="{% url 'single_habyant' habit_pk=habit.pk %}">{{habit.paciente.nombre}}</a></th>
+						<th><a href="{% url 'single_habyant' habit_pk=habit.pk %}">{{habit.paciente.primer_apellido}}</a></th>
+						<th><a href="{% url 'single_habyant' habit_pk=habit.pk %}">{{habit.paciente.segundo_apellido}}</a></th>
+						<th><a href="{% url 'single_habyant' habit_pk=habit.pk %}">{{habit.fecha}}</a></th>
 					</tr>
 				{% endfor %}
 			</tbody>

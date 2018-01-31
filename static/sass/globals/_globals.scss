@@ -2,8 +2,9 @@
 
 html,
 body {
-	font-family: $openSans;
+	font-family: $montserrat;
 	font-size: 1rem;
+	background: $gray-light;
 }
 
 h1 {
@@ -64,6 +65,22 @@ form {
 
 .card {
 	margin-bottom: 50px;
+	.card-title {
+		color: $gray-dark2;
+		letter-spacing: 0;
+	}
+	.card-text {
+		color: $gray-dark2;
+		letter-spacing: 0;
+	}
+	ul {
+		li {
+			a {
+				letter-spacing: 0;
+				color: $green;
+			}
+		}
+	}
 }
 
 ._field{

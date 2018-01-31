@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="tests-content" class="col col-md-8">
-	<a href="{% url 'nuevolipidicoform' paciente_pk=request.user.paciente.pk %}" class="btn btn-primary float-right"><i class="material-icons">note_add</i>&nbsp;Examen lip&iacute;dico</a>
-	<h2>Examenes lip&iacute;dicos</h2>
+<div id="tests-content" class="col col-md-10 col-lg-8">
+	{% if not request.user.is_staff %}
+		<a href="{% url 'nuevolipidicoform' paciente_pk=request.user.paciente.pk %}" class="btn btn-primary float-right"><i class="material-icons">note_add</i>&nbsp;Nuevo</a>
+	{% endif %}
+	<h2>Examenes Lip&iacute;dicos</h2>
 	{% if tests %}
-		<table id="lipidicos_tbl" class="table table-hover">
+		<table id="lipidicos_tbl" class="table table-hover table-responsive">
 			<thead>
 				<tr>
 					<th>#</th>
 					<th>Codigo Paciente</th>
 					<th>Nombre</th>
-					<th>Apellido</th>
+					<th>Primer Apellido</th>
 					<th>Segundo Apellido</th>
 					<th>Fecha</th>
 				</tr>
@@ -19,7 +21,11 @@
 			<tbody>
 				{% for test in tests  %}
 					<tr>
-						<th scope="row"><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.seguimiento}}</a></th>
+						{% if request.user.is_staff %}
+							<th scope="row"><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{forloop.counter}}</a></th>
+						{% else %}
+							<th scope="row"><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.seguimiento}}</a></th>
+						{% endif %}
 						<th><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.paciente.cod_paciente}}</a></th>
 						<th><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.paciente.nombre}}</a></th>
 						<th><a href="{% url 'single_lipidico' test_pk=test.pk %}">{{test.paciente.primer_apellido}}</a></th>

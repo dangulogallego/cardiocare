@@ -1,10 +1,10 @@
-{% extends 'base.html' %} {% block content %}
-<div id="register-container" class="col col-md-8">
+{% extends 'base.html' %} {% block title %}Cardiocare{% endblock %} {% block content %}
+<div id="register-container" class="col col-md-10 col-lg-8">
   <h2 class="text-center">Registro</h2>
   <form method="post" id="registerForm" class="row">
     {% csrf_token %}
     {% for field in form %}
-    <div class="col col-sm-6 col-md-4 _field">
+    <div class="col-6 col-sm-6 col-md-4 _field">
       {{ field.label_tag }}<br> {{ field }}
       {% for error in field.errors %}
         <p style="color: red">{{ error |safe }}</p>
@@ -12,13 +12,14 @@
     </div>
     {% endfor %}
     <div class="col col-sm-12">
-      <button type="submit">Registro</button>
+      <div class="col col-sm-4 singup-button">
+        <button type="submit">Registro</button>
+      </div>
     </div>
 
   </form>
-  <h3 class="text-center">O</h3>
   <p class="text-center">
-    Si ya tienes cuenta, <a href="{% url 'login' %}">inicia sesi&oacute;n!</a>
+    Si ya tienes cuenta, <a href="{% url 'login' %}">¡inicia sesi&oacute;n!</a>
   </p>
 </div>
 {% endblock %}

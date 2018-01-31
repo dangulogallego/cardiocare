@@ -1,9 +1,9 @@
 /* main: ../app.scss */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-$black: #000;
-$white: #fff;
+
 $red: #f01516;
 $gray: #ccc;
 $grayblue: #f1f4f5;
@@ -13,26 +13,35 @@ $blue90: rgba(65, 131, 196, 0.9);
 
 $oswald: "Oswald", sans-serif;
 $openSans: "Open Sans", sans-serif;
+$montserrat: 'Montserrat', sans-serif;
 
-$s8px: 0.5714rem;
-$s9px: 0.6429rem;
-$s10px: 0.7143rem;
-$s11px: 0.7857rem;
-$s12px: 0.8571rem;
-$s13px: 0.9286rem;
-$s14px: 1rem;
-$s15px: 1.071rem;
-$s16px: 1.143rem;
-$s17px: 1.214rem;
-$s18px: 1.286rem;
-$s20px: 1.429rem;
-$s22px: 1.571rem;
-$s24px: 1.714rem;
-$s26px: 1.857rem;
-$s28px: 2rem;
-$s30px: 2.143rem;
-$s32px: 2.286rem;
-$s34px: 2.429rem;
-$s36px: 2.571;
-$s38px: 2.714rem;
-$s40px: 2.857rem;
+$s8px: 0.5rem;
+$s9px: 0.5625rem;
+$s10px: 0.625rem;
+$s11px: 0.6875rem;
+$s12px: 0.75rem;
+$s13px: 0.8125rem;
+$s14px: 0.875rem;
+$s15px: 0.9375rem;
+$s16px: 1rem;
+$s18px: 1.125rem;
+$s20px: 1.25rem;
+$s22px: 1.375rem;
+$s24px: 1.5rem;
+$s26px: 1.625rem;
+$s28px: 1.75rem;
+$s30px: 1.875rem;
+$s32px: 2rem;
+$s34px: 2.125rem;
+$s36px: 2.25rem;
+$s38px: 2.375rem;
+$s40px: 2.5rem;
+
+$black: #000;
+$white: #fff;
+$green: #41B6A6;
+$orange:#FE8F00;
+$gray-light: #F9F9F9;
+$gray-dark: #D8D8D8;
+$gray-dark2: #7D7D7D;
+$gray-dark3: #4a4a4a;

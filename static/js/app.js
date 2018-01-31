@@ -4,7 +4,7 @@
 			username: "Cedula",
 			password: "Contraseña",
 			first_name: "Nombre",
-			last_name: "Apellidos",
+			last_name: "Primer apellido",
 			email: "Correo",
 			password_confirm: "Confirmar contraseña"
 		};
@@ -78,5 +78,21 @@
 		$('.datepicker').datepicker({language: 'es-ES'});
 		$('.datepicker-register').datepicker({language: 'es-ES', format:"yyyy-mm-dd"});
 
+		$('#hamburguesa').on('click', function() {
+			$('#mobile-menu-content').addClass('open');
+		})
+
+		$('.close-submenu-mobile').on('click', function () {
+			$('#mobile-menu-content').removeClass('open');
+		})
+
+		let alto = $(window).height();
+		let content = jQuery('#content').height();
+		if (content <= alto) {
+			$('#content').attr("style","min-height:" + (alto - 150) + "px");
+			$('#footer').attr("style","background-color:#41B6A6");
+		} else {
+			$('#footer').attr("style","background-color:#41B6A6");
+		}
 	});
 })(jQuery);

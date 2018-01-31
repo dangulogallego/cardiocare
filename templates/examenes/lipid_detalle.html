@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load calculation %}
 
 {% block content %}
-<div id="pacientes-content" class="col col-md-8">
+<div id="pacientes-content" class="col col-md-10 col-lg-8">
 
-	<div class="dropdown float-right">
+	<div class="dropdown float-right" style="display:none;">
 		<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="material-icons">settings</i>
 		</a>
@@ -15,10 +15,10 @@
 	<div class="row">
 		<div class="col col-md-12">
 			<h2>Paciente: {{test.paciente.cod_paciente}}</h2>
-			<h3>Nombre: {{test.paciente.nombre}}&nbsp;{{test.paciente.primer_apellido}}&nbsp;{{test.paciente.segundo_apellido}}</h3>
+			<h3>{{test.paciente.nombre}}&nbsp;{{test.paciente.primer_apellido}}</h3>
 			<p class="creation-date">Fecha de creación: {{test.paciente.fecha_creacion}}</p>
 		</div>
-    <div class="col col-md-12">
+    <div class="col-12 col-md-12">
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="pills-answers-tab" data-toggle="pill" href="#pills-answers" role="tab" aria-controls="pills-answers" aria-expanded="true">Respuestas</a>
@@ -34,20 +34,21 @@
           <div class="col col-md-12">
             <div class="row">
               <div class="col col-md-6 col-lg-6">
+								{% calculateRCV test.paciente test.seguimiento as calRCV %}
                 <p>
-                  Resultado: <br/><span>{{test.paciente.calculateRCV.numeric}}</span>
+                  Resultado: <br/><span>{{calRCV.numeric}}</span>
                 </p>
               </div>
               <div class="col col-md-6 col-lg-6">
                 <p>
-                  Indicador: <br/><span>{{test.paciente.calculateRCV.conceptual}}</span>
+                  Indicador: <br/><span>{{calRCV.conceptual}}</span>
                 </p>
               </div>
             </div>
           </div>
-          <div class="col col-md-12">
+          <!-- <div class="col col-md-12">
             <h3>Respuestas examen Lip&iacute;dico</h3><hr/>
-          </div>
+          </div> -->
           {% for answer in test.respuestas.all  %}
             <div class="col col-md-12">
               <p>

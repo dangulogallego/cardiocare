@@ -1,18 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="tests-content" class="col col-md-8">
-	<a href="{% url 'nuevoasaform' paciente_pk=request.user.paciente.pk %}" class="btn btn-primary float-right"><i class="material-icons">note_add</i>&nbsp;Test ASA</a>
-	<h2>Test ASA</h2>
-	<p class="text-muted">INSTRUMENTO ASA(APPRAISAL OF SELF-CARE AGENCY SCALE) VALORACION DE LA ESCALA DE AUTOCUIDAD</p>
+<div id="tests-content" class="col col-md-10 col-lg-8">
+	{% if not request.user.is_staff %}
+		<a href="{% url 'nuevoasaform' paciente_pk=request.user.paciente.pk %}" class="btn btn-primary float-right"><i class="material-icons">note_add</i>&nbsp;Nuevo</a>
+	{% endif %}
+	<h2 class="title-asa">Test ASA</h2>
+	<p class="text-muted">INSTRUMENTO ASA(APPRAISAL OF SELF-CARE AGENCY SCALE) VALORACION DE LA ESCALA DE AUTOCUIDADO</p>
 	{% if tests %}
-		<table id="tests_tbl" class="table table-hover">
+		<table id="tests_tbl" class="table table-hover table-responsive">
 			<thead>
 				<tr>
 					<th>#</th>
 					<th>Codigo Paciente</th>
 					<th>Nombre</th>
-					<th>Apellido</th>
+					<th>Primer Apellido</th>
 					<th>Segundo Apellido</th>
 					<th>Puntaje</th>
 					<th>Fecha</th>
@@ -21,11 +23,15 @@
 			<tbody>
 				{% for test in tests  %}
 					<tr>
-						<th scope="row"><a href="{% url 'single_asa' test_pk=test.pk %}">{{test.seguimiento}}</a></th>
+						{% if request.user.is_staff %}
+							<th scope="row"><a href="{% url 'single_asa' test_pk=test.pk %}">{{forloop.counter}}</a></th>
+						{% else %}
+							<th scope="row"><a href="{% url 'single_asa' test_pk=test.pk %}">{{test.seguimiento}}</a></th>
+						{% endif %}
 						<th><a href="{% url 'single_asa' test_pk=test.pk %}">{{test.paciente.cod_paciente}}</a></th>
 						<th><a href="{% url 'single_asa' test_pk=test.pk %}">{{test.paciente.nombre}}</a></th>
 						<th><a href="{% url 'single_asa' test_pk=test.pk %}">{{test.paciente.primer_apellido}}</a></th>
-						<th><a href="{% url 'single_asa' test_pk=test.pk %}">{{test.calcularConceptual}}</a></th>
+						<th><a href="{% url 'single_asa' test_pk=test.pk %}">{{test.paciente.segundo_apellido}}</a></th>
 						<th><a href="{% url 'single_asa' test_pk=test.pk %}">{{test.resultado}}</a></th>
 						<th><a href="{% url 'single_asa' test_pk=test.pk %}">{{test.fecha}}</a></th>
 					</tr>

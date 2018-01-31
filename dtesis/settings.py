@@ -25,7 +25,7 @@ SECRET_KEY = 'g2l%9d^4j27u(so1kj&b9@_&uit%c@4m+54m!(ua)yuhk&w4i9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["tesis.diego.com", "192.168.0.14", "localhost"]
+ALLOWED_HOSTS = ["cardiocare.co", "192.168.0.14", "localhost"]
 
 
 # Application definition
@@ -37,9 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'profiling',
-    'medical'
+    'medical',
+    'googlecharts'
 ]
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,9 +85,9 @@ WSGI_APPLICATION = 'dtesis.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dtesis3',
+        'NAME': 'dtesis2',
         'USER': 'postgres',
-        'PASSWORD': 'root',
+        'PASSWORD': '123456',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -109,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'UTC'
 
@@ -130,3 +137,9 @@ LOGIN_REDIRECT_URL = 'index'
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static/'),
 )
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'dtesis'
+EMAIL_HOST_PASSWORD = 'qwerty123456'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

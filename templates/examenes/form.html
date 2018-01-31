@@ -1,10 +1,19 @@
 {% extends 'base.html' %} {% block content %}
-<div id="register-container" class="col col-sm-9 col-lg-9">
-  <h2 class="text-center">{{ title }}</h2>
+<div id="register-container" class="col col-md-10 col-lg-8">
+  {% if messages %}
+    <div class="span12">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            <strong>Ups! </strong>{{ message|safe }}
+        </div>
+    {% endfor %}
+    </div>
+  {% endif %}
+  <h2 class="text-center tests" style="font-weight:600">{{ title }}</h2>
   <div class="row">
-    <div class="col col-md-12">
-      <h2>Paciente:&nbsp;<a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.cod_paciente}}</a></h2>
-      <h3>Nombre: {{paciente.nombre}}&nbsp;{{paciente.primer_apellido}}&nbsp;{{paciente.segundo_apellido}}</h3>
+    <div class="col-12 col-md-12">
+      <h2>Paciente:&nbsp; {{paciente.cod_paciente}}</h2>
+      <h3>{{paciente.nombre}}&nbsp;{{paciente.primer_apellido}}</h3>
       <p class="creation-date">Fecha de creación: {{paciente.fecha_creacion}}</p>
     </div>
   </div>
@@ -12,10 +21,10 @@
     {% csrf_token %}
     {% for field in form %}
     <div class="row">
-      <div class="col col-md-6 col-lg-6">
+      <div class="col-12 col-md-6 col-lg-6">
         {{ field.label_tag }}
       </div>
-      <div class="col col-md-6 col-lg-6">
+      <div class="col-12 col-md-6 col-lg-6">
         {{ field }}
       </div>
       {% for error in field.errors %}

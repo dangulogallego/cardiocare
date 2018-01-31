@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="observaciones-content" class="col col-md-10 col-lg-8">
+
+  <div class="dropdown float-right" style="display:none">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="material-icons">settings</i>
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownSettings">
+      <a href="#" class="dropdown-item"><i class="material-icons">edit</i>&nbsp;Editar</a>
+    </div>
+  </div>
+	<div class="row">
+    <div class="col col-md-12">
+			<h2>Observación {{observacion.pk}}</h2>
+		</div>
+    <div class="col-12 col-md-12">
+			<p>
+				Categoría: <span>{{observacion.categoria}}</span>
+			</p>
+		</div>
+    <div class="col-12 col-md-12">
+			<p>
+				Observación: <span>{{observacion.observacion}}</span>
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

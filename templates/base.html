@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>{% block title %}Tesis{% endblock %}</title>
+  <title>{% block title %}Cardiocare{% endblock %}</title>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
@@ -17,42 +17,98 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{% static 'css/datepicker.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.ico' %}">
 </head>
 
 <body>
   <div id="content">
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="{% url 'index' %}">HMS</a>
-    </nav>
+    {% if request.user.is_authenticated %}
+      <nav class="navbar navbar-light">
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logoverdesmall.png' %}" /></a>
+        <div class="col-xs-3 menuxs d-block d-lg-none">
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="hamburguesa">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+				</div>
+      </nav>
+      <div id="mobile-menu-content" class="d-block d-lg-none ">
+      	<div class="container">
+      		<div id="_header" class="row normalized-row">
+      			<a href="#" class="close-submenu-mobile"><i class="fa fa-times"></i></a>
+      		</div>
+      		<div id="_body" class="row normalized-row">
+      			<div class="col-sm-12">
+              <ul class="nav navbar-nav menu list-group list-group-flush">
+                {% if request.user.is_staff or request.user.is_superuser %}
+  					      <li><a href="{% url 'index' %}">Pacientes</a></li>
+                {% endif %}
+                {% if not request.user.is_staff %}
+                  <li><a href="{% url 'index' %}">Inicio</a></li>
+  					      <li><a href="{% url 'detallepaciente' paciente_pk=request.user.paciente.pk %}">Perfil</a></li>
+                {% endif %}
+                <li><a href="{% url 'habitsantecedents' %}">H&aacute;bitos y Antecedentes</a></li>
+                <li><a href="{% url 'testsasa' %}">Tests ASA</a></li>
+                <li><a href="{% url 'lipidicos' %}">Examenes Lip&iacute;dicos</a></li>
+                {% if request.user.is_staff or request.user.is_superuser %}
+                  <li><a href="{% url 'graphics' %}">Gráficas</a></li>
+  					      <li style="display:none"><a href="{% url 'observaciones' %}">Observaciones</a></li>
+                {% endif %}
+  					    <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+  					  </ul>
+      			</div>
+      		</div>
+      	</div>
+      </div>
+    {% endif %}
 
+      <!-- Menu Desktop -->
   		<div class="container-fluid">
   			<div class="row justify-content-md-center">
           {% if request.user.is_authenticated %}
-    				<div class="col col-md-3">
-    					<div class="card" style="width: 20rem;">
+    				<div class="col col-md-3 col-lg-4 col-xl-3 d-none d-lg-block">
+    					<div class="card mx-auto">
     					  <div class="card-body">
-    					    <h4 class="card-title">{{ request.user.first_name }} {{ request.user.last_name }}</h4>
-    					    <p class="card-text">Correo: {{ request.user.email}}</p>
+                  {% if request.user.is_staff %}
+    					      <h4 class="card-title">{{ request.user.first_name }} {{ request.user.last_name }}</h4>
+                  {% else %}
+                    <h4 class="card-title">{{ request.user.paciente.nombre }} {{ request.user.paciente.primer_apellido }}</h4>
+                  {% endif %}
+    					    <p class="card-text">{{ request.user.email}}</p>
     					  </div>
     					  <ul class="list-group list-group-flush">
                   {% if request.user.is_staff or request.user.is_superuser %}
     					      <li class="list-group-item"><a href="{% url 'index' %}">Pacientes</a></li>
                   {% endif %}
-                  <li class="list-group-item"><a href="{% url 'habitsantecedents' %}">H&aacute;bitos y antecedentes</a></li>
+                  {% if not request.user.is_staff %}
+                    <li class="list-group-item"><a href="{% url 'index' %}">Inicio</a></li>
+    					      <li class="list-group-item"><a href="{% url 'detallepaciente' paciente_pk=request.user.paciente.pk %}">Perfil</a></li>
+                  {% endif %}
+                  <li class="list-group-item"><a href="{% url 'habitsantecedents' %}">H&aacute;bitos y Antecedentes</a></li>
                   <li class="list-group-item"><a href="{% url 'testsasa' %}">Tests ASA</a></li>
                   <li class="list-group-item"><a href="{% url 'lipidicos' %}">Examenes Lip&iacute;dicos</a></li>
                   {% if request.user.is_staff or request.user.is_superuser %}
-    					      <li class="list-group-item"><a href="{% url 'observaciones' %}">Observaciones</a></li>
+                    <li class="list-group-item"><a href="{% url 'graphics' %}">Gráficas</a></li>
+    					      <li class="list-group-item" style="display:none"><a href="{% url 'observaciones' %}">Observaciones</a></li>
                   {% endif %}
     					    <li class="list-group-item"><a href="{% url 'logout' %}">Cerrar sesión</a></li>
     					  </ul>
-    					</div>
-    				</div>
+    				  </div>
+    			  </div>
           {% endif %}
   				{% block content %}{% endblock %}
-  			</div>
-  		</div>
+  		  </div>
+  	  </div>
   </div>
+  {% if request.user.is_authenticated %}
+  <div id="footer">
+    <p>
+      Powered By
+      <span>Diego Fernando Angulo</span>
+    </p>
+
+  </div>
+  {% endif %}
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -61,11 +117,13 @@
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
     crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/datepicker.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/datepicker.es.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+  <script src="https://use.fontawesome.com/6eaa40ca9b.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/datepicker.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/datepicker.es.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+
 </body>
 
 </html>

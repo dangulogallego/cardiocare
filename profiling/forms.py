@@ -9,6 +9,7 @@ from .models import *
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=50, required=False, help_text='Opcional.', widget=forms.TextInput(attrs={'class':'form-control'}))
     last_name = forms.CharField(max_length=50, required=False, help_text='Opcional.', widget=forms.TextInput(attrs={'class':'form-control'}))
+    segundo_apellido = forms.CharField(max_length=50, required=False, help_text='Opcional.', widget=forms.TextInput(attrs={'class':'form-control'}))
     email = forms.EmailField(max_length=254, help_text='Requerido. Ingrese un email válido.', widget=forms.EmailInput(attrs={'class':'form-control'}))
     fecha_nacimiento = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control datepicker-register'}))
     genero = forms.ChoiceField(choices=GENERO, widget=forms.Select(attrs={'class':'form-control'}))
@@ -20,7 +21,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+        fields = ('username', 'email', 'first_name', 'last_name', 'segundo_apellido', 'fecha_nacimiento', 'genero', 'telefono', 'estado_civil', 'estrato', 'regimen_salud', 'facultad', 'password1', 'password2', )
         widgets = {
             'username': forms.TextInput(attrs={'class':'form-control'}),
         }
@@ -45,6 +46,14 @@ class PacienteForm(ModelForm):
 
 
 class HabitsAntecedentsForm(ModelForm):
+    CHOICES=[
+        ('1','Si'),
+        ('0','No')
+    ]
+    tabaquismo = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
+    diabetes = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
+    hipertension = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
+    iam = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
     class Meta:
         model = HabitsAntecedents
         fields = ('tabaquismo', 'diabetes', 'hipertension', 'iam')

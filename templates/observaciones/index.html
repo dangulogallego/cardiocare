@@ -15,9 +15,9 @@
 			<tbody>
 				{% for observacion in observaciones  %}
 					<tr>
-						<th scope="row">{{observacion.pk}}</th>
-						<th scope="row">{{observacion.categoria.nombre}}</th>
-						<th scope="row">{{observacion.observacion}}</th>
+						<th scope="row"><a href="{% url 'detalleobservacion' observacion_pk=observacion.pk %}">{{observacion.pk}}</a></th>
+						<th><a href="{% url 'detalleobservacion' observacion_pk=observacion.pk %}">{{observacion.categoria.nombre}}</a></th>
+						<th><a href="{% url 'detalleobservacion' observacion_pk=observacion.pk %}">{{observacion.observacion}}</a></th>
 					</tr>
 				{% endfor %}
 			</tbody>

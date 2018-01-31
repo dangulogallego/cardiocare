@@ -1,0 +1,387 @@
+/* main: ../app.scss */
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575px) {
+
+  #login-container {
+    margin-top: 3vh;
+  }
+
+  #register-container h2 {
+    margin-top: 3vh;
+  }
+
+  #content {
+    .menuxs {
+      display: flex;
+      justify-content: center;
+    }
+    .hamburg {
+      border: none;
+      background: white;
+      text-decoration: none;
+      line-height: 5px;
+    }
+  }
+
+  #mobile-menu-content {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    z-index: 9;
+    will-change: left;
+    transition: left .3s ease-in-out;
+  }
+
+  #mobile-menu-content.open {
+    left: 0;
+  }
+
+  #mobile-menu-content #_header a.close-submenu-mobile {
+    font-size: 1.6rem;
+    padding: 10px;
+  }
+
+  #mobile-menu-content #_header a {
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  #landing-content h2 {
+    color: $orange;
+    margin-top: 4vh;
+    margin-bottom: 3vh;
+  }
+
+  .dataTables_info {
+    display: none;
+  }
+
+  .dataTables_length {
+    display: none;
+  }
+
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    justify-content: center !important;
+  }
+
+  #new-paciente-container h2:first-child {
+      margin-bottom: 25px;
+  }
+
+  #tests-content {
+    .title-asa {
+      margin-bottom: 15px;
+    }
+  }
+
+  #examenForm .row {
+    height: auto !important;
+    margin-bottom: 25px;
+  }
+
+  #pacientes-content ul {
+    justify-content: center;
+  }
+
+  .gp1 {
+    margin-bottom: 15px;
+  }
+
+  .gp2 {
+    margin-bottom: 15px;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767px) {
+  #login-container {
+    margin-top: 5vh;
+  }
+
+  #register-container h2 {
+    margin-top: 5vh;
+  }
+
+  #content {
+    .menuxs {
+      display: flex;
+      justify-content: center;
+    }
+    .hamburg {
+      border: none;
+      background: white;
+      text-decoration: none;
+      line-height: 5px;
+    }
+  }
+
+  #mobile-menu-content {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    z-index: 9;
+    will-change: left;
+    transition: left .3s ease-in-out;
+  }
+
+  #mobile-menu-content.open {
+    left: 0;
+  }
+
+  #mobile-menu-content #_header a.close-submenu-mobile {
+    font-size: 1.6rem;
+    padding: 10px;
+  }
+
+  #mobile-menu-content #_header a {
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  #landing-content h2 {
+    color: $orange;
+    margin-top: 6vh;
+    margin-bottom: 5vh;
+  }
+
+  .dataTables_length {
+    display: none;
+  }
+
+  #new-paciente-container h2:first-child {
+    margin-bottom: 20px;
+  }
+
+  #tests-content {
+    .title-asa {
+      margin-bottom: 15px;
+    }
+  }
+
+  #examenForm .row {
+    height: auto !important;
+    margin-bottom: 25px;
+  }
+
+  .gp1 {
+    margin-bottom: 15px;
+  }
+
+  .gp2 {
+    margin-bottom: 15px;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991px) {
+  #login-container {
+    margin-top: 15vh;
+  }
+
+  #register-container h2 {
+    margin-top: 6vh;
+  }
+
+  #content {
+    .menuxs {
+      display: flex;
+      justify-content: center;
+    }
+    .hamburg {
+      border: none;
+      background: white;
+      text-decoration: none;
+      line-height: 5px;
+    }
+  }
+
+  #mobile-menu-content {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    z-index: 9;
+    will-change: left;
+    transition: left .3s ease-in-out;
+  }
+
+  #mobile-menu-content.open {
+    left: 0;
+  }
+
+  #mobile-menu-content #_header a.close-submenu-mobile {
+    font-size: 1.6rem;
+    padding: 10px;
+  }
+
+  #mobile-menu-content #_header a {
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    color: #aaa;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  #landing-content {
+    margin-top: 3vh;
+    h2 {
+      color: $orange;
+      margin-top: 5vh;
+      margin-bottom: 3vh;
+    }
+  }
+
+  .dataTables_length {
+    display: none;
+  }
+
+  #habits_tbl_filter, #lipidicos_tbl_filter {
+    margin-top: 15px;
+  }
+
+  .dataTables_info {
+    display: none;
+  }
+
+  #new-paciente-container h2:first-child {
+    margin-bottom: 30px;
+  }
+
+  #tests-content {
+    .title-asa {
+      margin-bottom: 15px;
+    }
+  }
+
+  #examenForm .row {
+    height: auto !important;
+    margin-bottom: 25px;
+  }
+
+  .gp1 {
+    margin-bottom: 15px;
+  }
+
+  .gp2 {
+    margin-bottom: 15px;
+  }
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199px) {
+  #login-container {
+    margin-top: 18vh;
+  }
+
+  #register-container h2 {
+    margin-top: 9vh;
+  }
+
+  #landing-content h2 {
+    color: $orange;
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+  }
+
+  #habits_tbl_wrapper, #lipidicos_tbl_wrapper .row:first-child {
+    margin-top: 20px;
+  }
+
+  .dataTables_info {
+    display: none;
+  }
+
+  .dataTables_length {
+    color: $gray-dark3;
+  }
+
+  #new-paciente-container h2:first-child {
+    margin-bottom: 30px;
+  }
+
+  #tests_tbl, #pacientes_tbl {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  #tests-content {
+    .title-asa {
+      margin-bottom: 15px;
+    }
+  }
+
+  .gp1 {
+    margin-bottom: 15px;
+  }
+
+  .gp2 {
+    margin-bottom: 15px;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  #login-container {
+    margin-top: 100px;
+  }
+
+  #register-container h2 {
+    margin-top: 40px;
+  }
+
+  #landing-content h2 {
+    color: $orange;
+    margin-top: 4vh;
+    margin-bottom: 3vh;
+  }
+
+  #habits_tbl_wrapper, #lipidicos_tbl_wrapper .row:first-child {
+    margin-top: 25px;
+  }
+
+  .dataTables_info {
+    display: none;
+  }
+
+  .dataTables_length {
+    color: $gray-dark3;
+  }
+
+  #new-paciente-container h2:first-child {
+    margin-bottom: 30px;
+  }
+
+  .gp1 {
+    margin-bottom: 15px;
+  }
+
+  .gp2 {
+    margin-bottom: 15px;
+  }
+}

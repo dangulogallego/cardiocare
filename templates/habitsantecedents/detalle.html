@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="pacientes-content" class="col col-md-10 col-lg-8">
+
+	<div class="dropdown float-right" style="display:none;">
+		<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<i class="material-icons">settings</i>
+		</a>
+
+		<div class="dropdown-menu" aria-labelledby="dropdownSettings">
+			<a href="#" class="dropdown-item"><i class="material-icons">delete</i>&nbsp;Borrar</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-12">
+			<h2>Paciente: {{habyant.paciente.cod_paciente}}</h2>
+			<h3>{{habyant.paciente.nombre}}&nbsp;{{habyant.paciente.primer_apellido}}</h3>
+			<p class="creation-date">Fecha de creación: {{habyant.paciente.fecha_creacion}}</p>
+		</div>
+    <div class="col-6 col-md-6">
+			<p>
+				Tabaquismo: <span>{% if habyant.tabaquismo %}Si{% else %}No{% endif %}</span>
+			</p>
+		</div>
+    <div class="col-6 col-md-6">
+			<p>
+				Diabetes: <span>{% if habyant.diabetes %}Si{% else %}No{% endif %}</span>
+			</p>
+		</div>
+    <div class="col-6 col-md-6">
+			<p>
+				Hipertension: <span>{% if habyant.hipertension %}Si{% else %}No{% endif %}</span>
+			</p>
+		</div>
+    <div class="col-6 col-md-6">
+			<p>
+				Infarto agudo al miocardio (iam): <span>{% if habyant.iam %}Si{% else %}No{% endif %}</span>
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -75,11 +75,15 @@ class Paciente(models.Model):
         else:
             return 26
 
-    def getRecomendations(self):
-        data = []
+    def getRecomendations(self, seguimiento):
         tmp = {}
-        last_asa = self.examenes.filter(tipo__nombre="Test Asa").order_by('seguimiento').first()
-        answers = last_asa.respuestas.order_by('pregunta__categoria')
+        observaciones = ""
+        asa_test = self.examenes.filter(tipo__nombre="Test Asa", seguimiento=seguimiento).first()
+        if asa_test:
+            answers = asa_test.respuestas.order_by('pregunta__categoria')
+        else:
+            asa_test = self.examenes.filter(tipo__nombre="Test Asa").order_by("seguimiento").last()
+            answers = asa_test.respuestas.order_by('pregunta__categoria')
         for answer in answers:
             if answer.pregunta.categoria:
                 key = str(answer.pregunta.categoria.pk)
@@ -89,6 +93,7 @@ class Paciente(models.Model):
                 else:
                     adata = {
                         'points': answer.valor,
+                        'cat': answer.pregunta.categoria,
                         'cat_nombre': answer.pregunta.categoria.nombre,
                         'cat_minmala': answer.pregunta.categoria.minmala,
                         'cat_maxmala': answer.pregunta.categoria.maxmala,
@@ -96,37 +101,49 @@ class Paciente(models.Model):
                         'cat_maxbuena': answer.pregunta.categoria.maxbuena,
                     }
                     tmp[key] = adata
-                tmp[key]['observaciones'] = ""
-                if answer.valor >= answer.pregunta.categoria.minmala and answer.valor <= answer.pregunta.categoria.maxmala:
-                    for recomendation in answer.pregunta.categoria.observaciones.all():
-                        tmp[key]['observaciones'] += recomendation.observacion + ". "
 
-        for dt in tmp:
-            data.append(tmp[dt]['observaciones'])
+        for cat in tmp:
+            keyCat = str(tmp[cat]['cat'].pk)
+            if tmp[cat]['points'] >= tmp[cat]['cat_minmala'] and tmp[cat]['points'] <= tmp[cat]['cat_maxmala']:
+                tmp[keyCat]['observaciones'] = ""
+                for recomendation in tmp[cat]['cat'].observaciones.all():
+                    observaciones += recomendation.observacion + ". \n"
 
-        return ''.join(str(x) for x in data)
+        return observaciones
 
-    def smoke_points(self):
-        last_habit = self.habits.order_by('seguimiento').first()
+    def smoke_points(self, seguimiento):
+        last_habit = self.habits.filter(seguimiento=seguimiento).first()
         if last_habit:
+            return 8 if last_habit.tabaquismo else 0
+        else:
+            last_habit = self.habits.order_by('seguimiento').last()
             return 8 if last_habit.tabaquismo else 0
         return 0
 
-    def has_diabetes(self):
-        last_habit = self.habits.order_by('seguimiento').first()
+    def has_diabetes(self, seguimiento):
+        last_habit = self.habits.filter(seguimiento=seguimiento).first()
         if last_habit:
             return last_habit.diabetes
-        return False
+        else:
+            last_habit = self.habits.order_by('seguimiento').last()
+            return last_habit.diabetes
+        return 0
 
-    def diabetes_points(self):
-        last_habit = self.habits.order_by('seguimiento').first()
+    def diabetes_points(self, seguimiento):
+        last_habit = self.habits.filter(seguimiento=seguimiento).first()
         if last_habit:
+            return 6 if last_habit.diabetes else 0
+        else:
+            last_habit = self.habits.order_by('seguimiento').last()
             return 6 if last_habit.diabetes else 0
         return 0
 
-    def iam_points(self):
-        last_habit = self.habits.order_by('seguimiento').first()
+    def iam_points(self, seguimiento):
+        last_habit = self.habits.filter(seguimiento=seguimiento).first()
         if last_habit:
+            return 8 if last_habit.iam else 0
+        else:
+            last_habit = self.habits.order_by('seguimiento').last()
             return 8 if last_habit.iam else 0
         return 0
 
@@ -136,172 +153,179 @@ class Paciente(models.Model):
                 return answer.valor
         return False
 
-    def ldl_points(self):
-        lipid_test = self.examenes.filter(tipo__nombre="Examen Lipídico").order_by('seguimiento').first()
+    def ldl_points(self, seguimiento):
+        lipid_test = self.examenes.get(tipo__nombre="Examen Lipídico", seguimiento=seguimiento)
         if lipid_test:
             value = self.test_question_val('ldl', lipid_test.respuestas.all())
-            if value < 100:
-                return 0
-            elif value > 99 and value < 130:
-                return 5
-            elif value > 129 and value < 160:
-                return 10
-            elif value > 159 and value < 190:
-                return 14
-            else:
-                return 20
-        return 0
+        else:
+            lipid_test = self.examenes.filter(tipo__nombre="Examen Lipídico").order_by('seguimiento').last()
+            value = self.test_question_val('ldl', lipid_test.respuestas.all())
+        if value < 100:
+            return 0
+        elif value > 99 and value < 130:
+            return 5
+        elif value > 129 and value < 160:
+            return 10
+        elif value > 159 and value < 190:
+            return 14
+        else:
+            return 20
 
-    def hdl_points(self):
-        lipid_test = self.examenes.filter(tipo__nombre="Examen Lipídico").order_by('seguimiento').first()
+    def hdl_points(self, seguimiento):
+        lipid_test = self.examenes.get(tipo__nombre="Examen Lipídico", seguimiento=seguimiento)
         if lipid_test:
             value = self.test_question_val('hdl', lipid_test.respuestas.all())
-            if value < 35:
-                return 11
-            elif value > 34 and value < 45:
-                return 8
-            elif value > 44 and value < 55:
-                return 10
-            else:
-                return 0
-        return 0
+        else:
+            lipid_test = self.examenes.filter(tipo__nombre="Examen Lipídico").order_by('seguimiento').last()
+            value = self.test_question_val('hdl', lipid_test.respuestas.all())
+        if value < 35:
+            return 11
+        elif value > 34 and value < 45:
+            return 8
+        elif value > 44 and value < 55:
+            return 5
+        else:
+            return 0
 
-    def trigliceridos_points(self):
-        lipid_test = self.examenes.filter(tipo__nombre="Examen Lipídico").order_by('seguimiento').first()
+    def trigliceridos_points(self, seguimiento):
+        lipid_test = self.examenes.get(tipo__nombre="Examen Lipídico", seguimiento=seguimiento)
         if lipid_test:
             value = self.test_question_val('trigliceridos', lipid_test.respuestas.all())
-            if value < 100:
-                return 0
-            elif value > 99 and value < 150:
-                return 2
-            elif value > 149 and value < 200:
-                return 3
-            else:
-                return 4
-        return 0
+        else:
+            lipid_test = self.examenes.filter(tipo__nombre="Examen Lipídico").order_by('seguimiento').last()
+            value = self.test_question_val('trigliceridos', lipid_test.respuestas.all())
+        if value < 100:
+            return 0
+        elif value > 99 and value < 150:
+            return 2
+        elif value > 149 and value < 200:
+            return 3
+        else:
+            return 4
 
-    def pas_points(self):
-        lipid_test = self.examenes.filter(tipo__nombre="Examen Lipídico").order_by('seguimiento').first()
+    def pas_points(self, seguimiento):
+        lipid_test = self.examenes.get(tipo__nombre="Examen Lipídico", seguimiento=seguimiento)
         if lipid_test:
             value = self.test_question_val('pas', lipid_test.respuestas.all())
-            if value < 120:
-                return 0
-            elif value > 119 and value < 130:
-                return 2
-            elif value > 129 and value < 140:
-                return 3
-            elif value > 139 and value < 160:
-                return 5
-            else:
-                return 8
-        return 0
+        else:
+            lipid_test = self.examenes.filter(tipo__nombre="Examen Lipídico").order_by('seguimiento').last()
+            value = self.test_question_val('pas', lipid_test.respuestas.all())
+        if value < 120:
+            return 0
+        elif value > 119 and value < 130:
+            return 2
+        elif value > 129 and value < 140:
+            return 3
+        elif value > 139 and value < 160:
+            return 5
+        else:
+            return 8
 
-    def calculateRCVCount(self):
-        points = self.age_points() + self.smoke_points() + self.diabetes_points() + self.iam_points() + self.ldl_points() + self.hdl_points() + self.trigliceridos_points() + self.pas_points()
+    def calculateRCVCount(self, seguimiento):
+        points = self.age_points() + self.smoke_points(seguimiento) + self.diabetes_points(seguimiento) + self.iam_points(seguimiento) + self.ldl_points(seguimiento) + self.hdl_points(seguimiento) + self.trigliceridos_points(seguimiento) + self.pas_points(seguimiento)
         return points
 
-    def calculateRCVF(self):
-        if self.calculateRCVCount() < 20:
-            return 0
-        if self.calculateRCVCount() == 20:
+    def calculateRCVF(self, seguimiento):
+        value = self.calculateRCVCount(seguimiento)
+        if value < 20:
             return 1
-        if self.calculateRCVCount() == 21:
+        if value == 21:
             return 1.1
-        if self.calculateRCVCount() == 22:
+        if value == 22:
             return 1.2
-        if self.calculateRCVCount() == 23:
+        if value == 23:
             return 1.3
-        if self.calculateRCVCount() == 24:
+        if value == 24:
             return 1.4
-        if self.calculateRCVCount() == 25:
+        if value == 25:
             return 1.6
-        if self.calculateRCVCount() == 26:
+        if value == 26:
             return 1.7
-        if self.calculateRCVCount() == 27:
+        if value == 27:
             return 1.8
-        if self.calculateRCVCount() == 28:
+        if value == 28:
             return 1.9
-        if self.calculateRCVCount() == 29:
+        if value == 29:
             return 2.3
-        if self.calculateRCVCount() == 30:
+        if value == 30:
             return 2.4
-        if self.calculateRCVCount() == 31:
+        if value == 31:
             return 2.8
-        if self.calculateRCVCount() == 32:
+        if value == 32:
             return 2.9
-        if self.calculateRCVCount() == 33:
+        if value == 33:
             return 3.3
-        if self.calculateRCVCount() == 34:
+        if value == 34:
             return 3.5
-        if self.calculateRCVCount() == 35:
+        if value == 35:
             return 4
-        if self.calculateRCVCount() == 36:
+        if value == 36:
             return 4.2
-        if self.calculateRCVCount() == 37:
+        if value == 37:
             return 4.8
-        if self.calculateRCVCount() == 38:
+        if value == 38:
             return 5.1
-        if self.calculateRCVCount() == 39:
+        if value == 39:
             return 5.7
-        if self.calculateRCVCount() == 40:
+        if value == 40:
             return 6.1
-        if self.calculateRCVCount() == 41:
+        if value == 41:
             return 7.0
-        if self.calculateRCVCount() == 42:
+        if value == 42:
             return 7.4
-        if self.calculateRCVCount() == 43:
+        if value == 43:
             return 8.0
-        if self.calculateRCVCount() == 44:
+        if value == 44:
             return 8.8
-        if self.calculateRCVCount() == 45:
+        if value == 45:
             return 10.2
-        if self.calculateRCVCount() == 46:
+        if value == 46:
             return 10.5
-        if self.calculateRCVCount() == 47:
+        if value == 47:
             return 10.7
-        if self.calculateRCVCount() == 48:
+        if value == 48:
             return 12.8
-        if self.calculateRCVCount() == 49:
+        if value == 49:
             return 13.2
-        if self.calculateRCVCount() == 50:
+        if value == 50:
             return 15.5
-        if self.calculateRCVCount() == 51:
+        if value == 51:
             return 16.8
-        if self.calculateRCVCount() == 52:
+        if value == 52:
             return 17.5
-        if self.calculateRCVCount() == 53:
+        if value == 53:
             return 19.6
-        if self.calculateRCVCount() == 54:
+        if value == 54:
             return 21.7
-        if self.calculateRCVCount() == 55:
+        if value == 55:
             return 22.2
-        if self.calculateRCVCount() == 56:
+        if value == 56:
             return 23.8
-        if self.calculateRCVCount() == 57:
+        if value == 57:
             return 25.1
-        if self.calculateRCVCount() == 58:
+        if value == 58:
             return 28.0
-        if self.calculateRCVCount() == 59:
+        if value == 59:
             return 29.4
-        if self.calculateRCVCount() >= 60:
+        if value >= 60:
             return 30
         return 0
 
     def getRisk(self, points):
         if points < 10:
-            return 'Riesgo Bajo'
+            return 'Riesgo Leve'
         elif points >= 10 and points < 20:
-            return 'Riesgo Medio'
+            return 'Riesgo Moderado'
         else:
             return 'Riesgo Alto'
 
-    def calculateRCV(self):
+    def calculateRCV(self, seguimiento):
         data = {}
-        if self.genero == 'F' and self.has_diabetes():
-            rnum = self.calculateRCVF() * 0.25
+        if self.genero == 'F' and not self.has_diabetes(seguimiento):
+            rnum = self.calculateRCVF(seguimiento) * 0.25
         else:
-            rnum = self.calculateRCVF()
-        data['numeric'] = str(self.calculateRCVCount()) + '/91 (' + str(rnum) + ')'
+            rnum = self.calculateRCVF(seguimiento)
+        data['numeric'] = str(self.calculateRCVCount(seguimiento)) + '/91 (' + str(rnum) + ')'
         data['conceptual'] = self.getRisk(rnum)
         data['percentage'] = rnum
         return data
