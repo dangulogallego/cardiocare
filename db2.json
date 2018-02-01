@@ -775,194 +775,187 @@
 	"model": "medical.respuesta",
 	"pk": 29,
 	"fields": {
-		"pregunta": 29,
+		"pregunta": 28,
 		"valor": 30.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 30,
 	"fields": {
-		"pregunta": 28,
-		"valor": 30.0
-	}
-}, {
-	"model": "medical.respuesta",
-	"pk": 31,
-	"fields": {
 		"pregunta": 27,
 		"valor": 320.0
 	}
 }, {
 	"model": "medical.respuesta",
-	"pk": 32,
+	"pk": 31,
 	"fields": {
 		"pregunta": 26,
+		"valor": 30.0
+	}
+}, {
+	"model": "medical.respuesta",
+	"pk": 32,
+	"fields": {
+		"pregunta": 29,
 		"valor": 30.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 33,
 	"fields": {
-		"pregunta": 29,
+		"pregunta": 28,
 		"valor": 30.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 34,
 	"fields": {
-		"pregunta": 28,
-		"valor": 30.0
-	}
-}, {
-	"model": "medical.respuesta",
-	"pk": 35,
-	"fields": {
 		"pregunta": 27,
 		"valor": 45.0
 	}
 }, {
 	"model": "medical.respuesta",
-	"pk": 36,
+	"pk": 35,
 	"fields": {
 		"pregunta": 26,
 		"valor": 52.0
 	}
 }, {
 	"model": "medical.respuesta",
-	"pk": 37,
+	"pk": 36,
 	"fields": {
 		"pregunta": 29,
+		"valor": 90.0
+	}
+}, {
+	"model": "medical.respuesta",
+	"pk": 37,
+	"fields": {
+		"pregunta": 28,
 		"valor": 90.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 38,
 	"fields": {
-		"pregunta": 28,
+		"pregunta": 27,
 		"valor": 90.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 39,
 	"fields": {
-		"pregunta": 27,
+		"pregunta": 26,
 		"valor": 90.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 40,
 	"fields": {
-		"pregunta": 26,
-		"valor": 90.0
+		"pregunta": 29,
+		"valor": 100.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 41,
 	"fields": {
-		"pregunta": 29,
+		"pregunta": 28,
 		"valor": 100.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 42,
 	"fields": {
-		"pregunta": 28,
+		"pregunta": 27,
 		"valor": 100.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 43,
 	"fields": {
-		"pregunta": 27,
+		"pregunta": 26,
 		"valor": 100.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 44,
 	"fields": {
-		"pregunta": 26,
-		"valor": 100.0
-	}
-}, {
-	"model": "medical.respuesta",
-	"pk": 45,
-	"fields": {
 		"pregunta": 29,
 		"valor": 150.0
 	}
 }, {
 	"model": "medical.respuesta",
-	"pk": 46,
+	"pk": 45,
 	"fields": {
 		"pregunta": 28,
 		"valor": 151.0
 	}
 }, {
 	"model": "medical.respuesta",
-	"pk": 47,
+	"pk": 46,
 	"fields": {
 		"pregunta": 27,
 		"valor": 150.0
 	}
 }, {
 	"model": "medical.respuesta",
-	"pk": 48,
+	"pk": 47,
 	"fields": {
 		"pregunta": 26,
 		"valor": 145.0
 	}
 }, {
 	"model": "medical.respuesta",
-	"pk": 49,
+	"pk": 48,
 	"fields": {
 		"pregunta": 29,
+		"valor": 100.0
+	}
+}, {
+	"model": "medical.respuesta",
+	"pk": 49,
+	"fields": {
+		"pregunta": 28,
 		"valor": 100.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 50,
 	"fields": {
-		"pregunta": 28,
+		"pregunta": 27,
 		"valor": 100.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 51,
 	"fields": {
-		"pregunta": 27,
+		"pregunta": 26,
 		"valor": 100.0
 	}
 }, {
 	"model": "medical.respuesta",
 	"pk": 52,
 	"fields": {
-		"pregunta": 26,
-		"valor": 100.0
-	}
-}, {
-	"model": "medical.respuesta",
-	"pk": 53,
-	"fields": {
 		"pregunta": 29,
 		"valor": 120.0
 	}
 }, {
 	"model": "medical.respuesta",
-	"pk": 54,
+	"pk": 53,
 	"fields": {
 		"pregunta": 28,
 		"valor": 120.0
 	}
 }, {
 	"model": "medical.respuesta",
-	"pk": 55,
+	"pk": 54,
 	"fields": {
 		"pregunta": 27,
 		"valor": 120.0
 	}
 }, {
 	"model": "medical.respuesta",
-	"pk": 56,
+	"pk": 55,
 	"fields": {
 		"pregunta": 26,
 		"valor": 120.0
