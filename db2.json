@@ -135,13 +135,61 @@
 	"model": "profiling.regimensalud",
 	"pk": 1,
 	"fields": {
-		"nombre": "EPS"
+		"nombre": "Régimen contributivo"
+	}
+}, {
+	"model": "profiling.regimensalud",
+	"pk": 2,
+	"fields": {
+		"nombre": "Medicina prepagada"
+	}
+}, {
+	"model": "profiling.regimensalud",
+	"pk": 3,
+	"fields": {
+		"nombre": "Póliza de salud particular"
+	}
+}, {
+	"model": "profiling.regimensalud",
+	"pk": 4,
+	"fields": {
+		"nombre": "Otro"
 	}
 }, {
 	"model": "profiling.facultad",
 	"pk": 1,
 	"fields": {
-		"nombre": "Ingenier\u00eda en sistemas de informaci\u00f3n"
+		"nombre": "Ingenier\u00eda"
+	}
+}, {
+	"model": "profiling.facultad",
+	"pk": 2,
+	"fields": {
+		"nombre": "Ciencias administrativas, económicas y contables"
+	}
+}, {
+	"model": "profiling.facultad",
+	"pk": 3,
+	"fields": {
+		"nombre": "Ciencias jurídicas y humanísticas"
+	}
+}, {
+	"model": "profiling.facultad",
+	"pk": 4,
+	"fields": {
+		"nombre": "Ciencias de la salud"
+	}
+}, {
+	"model": "profiling.facultad",
+	"pk": 5,
+	"fields": {
+		"nombre": "Ciencias de la educación"
+	}
+}, {
+	"model": "profiling.facultad",
+	"pk": 6,
+	"fields": {
+		"nombre": "Ninguna"
 	}
 }, {
 	"model": "profiling.habitsantecedents",
@@ -245,7 +293,7 @@
 	"pk": 6,
 	"fields": {
 		"categoria": 1,
-		"observacion": "Otra 1"
+		"observacion": "Observacion 6"
 	}
 }, {
 	"model": "medical.opcionpregunta",
@@ -1402,18 +1450,6 @@
 	}
 }, {
 	"model": "admin.logentry",
-	"pk": 3,
-	"fields": {
-		"action_time": "2017-10-11T05:06:29.467Z",
-		"user": 1,
-		"content_type": 7,
-		"object_id": "1",
-		"object_repr": "EPS",
-		"action_flag": 1,
-		"change_message": "[{\"added\": {}}]"
-	}
-}, {
-	"model": "admin.logentry",
 	"pk": 4,
 	"fields": {
 		"action_time": "2017-10-11T05:06:33.886Z",
@@ -1601,18 +1637,6 @@
 		"content_type": 12,
 		"object_id": "5",
 		"object_repr": "Observacion 5",
-		"action_flag": 1,
-		"change_message": "[{\"added\": {}}]"
-	}
-}, {
-	"model": "admin.logentry",
-	"pk": 20,
-	"fields": {
-		"action_time": "2017-10-14T00:01:50.769Z",
-		"user": 1,
-		"content_type": 12,
-		"object_id": "6",
-		"object_repr": "Otra 1",
 		"action_flag": 1,
 		"change_message": "[{\"added\": {}}]"
 	}
