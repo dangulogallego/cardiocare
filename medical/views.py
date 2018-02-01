@@ -10,6 +10,7 @@ from sendgrid.helpers.mail import Email, Content, Substitution, Mail
 from django.db.models.signals import post_save
 from django.contrib import messages
 import datetime
+from django.conf import settings
 try:
     # Python 3
     import urllib.request as urllib
@@ -20,7 +21,7 @@ from .models import *
 from .forms import *
 from profiling.models import Paciente, HabitsAntecedents
 
-# sg = sendgrid.SendGridAPIClient(apikey='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')
+sg = sendgrid.SendGridAPIClient(apikey=settings.SENDGRID_API_KEY)
 
 
 def graphics(request):
