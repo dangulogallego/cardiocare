@@ -6,11 +6,13 @@ from django.contrib.auth.models import User
 import datetime
 
 GENERO = (
+    ('', '--------'),
     ('F', 'Femenino'),
     ('M', 'Masculino'),
 )
 
 ESTADO_CIVL = (
+    ('', '--------'),
     ('Unión Libre', 'Unión Libre'),
     ('Casado', 'Casado'),
     ('Soltero', 'Soltero'),
@@ -19,6 +21,7 @@ ESTADO_CIVL = (
 )
 
 ESTRATO = (
+    ('', '--------'),
     ('1', '1'),
     ('2', '2'),
     ('3', '3'),

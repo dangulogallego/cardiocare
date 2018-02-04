@@ -57,7 +57,8 @@ def graphics(request):
         promY = y / n
         sx = math.sqrt((x2/n) - math.pow(promX, 2))
         sy = math.sqrt((y2/n) - math.pow(promY, 2))
-        rxy = ((xy / n) - (promX * promY)) / (sx * sy)
+        # rxy = ((xy / n) - (promX * promY)) / (sx * sy)
+        rxy = 0
         print data
         print rxy
         return render(request, 'graphics/index.html', {'values': [[80,23], [37, 53], [72, 40], [24, 91]], 'pacientes': pacientes, 'pearson': rxy})

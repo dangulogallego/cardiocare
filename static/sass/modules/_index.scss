@@ -41,6 +41,26 @@ nav {
 			font-style: italic;
 		}
 	}
+	button {
+		background: $green;
+		width: 100%;
+		border: 0;
+		height: 40px;
+		color: #fff;
+		border-radius: inherit;
+	}
+
+}
+
+#examenForm {
+	a {
+		background: $orange;
+		width: 100%;
+		border: 0;
+		height: 40px;
+		color: #fff;
+		border-radius: inherit;
+	}
 }
 
 #login-container,
@@ -123,7 +143,7 @@ nav {
 		font-style: italic;
 	}
 	p {
-		font-weight: bold;
+		font-weight: 500;
 		color: $graydark;
 		span {
 			font-weight: 300;
@@ -131,6 +151,9 @@ nav {
 			display: block;
 			color: $gray-dark2 !important;
 		}
+	}
+	.result-examens p {
+		font-weight: bolder !important;
 	}
 }
 
@@ -360,4 +383,11 @@ nav {
 	margin-bottom: 15px;
 	font-style: italic;
 	color: $gray-dark3;
+}
+
+.label_required {
+	color: $gray-dark2 !important;
+	font-style: italic;
+	font-size: $s14px;
+	text-align: center;
 }

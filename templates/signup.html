@@ -1,11 +1,14 @@
 {% extends 'base.html' %} {% block title %}Cardiocare{% endblock %} {% block content %}
 <div id="register-container" class="col col-md-10 col-lg-8">
   <h2 class="text-center">Registro</h2>
+  <p class="label_required">Los campos marcados con (*) son obligatorios</p>
   <form method="post" id="registerForm" class="row">
     {% csrf_token %}
     {% for field in form %}
     <div class="col-6 col-sm-6 col-md-4 _field">
-      {{ field.label_tag }}<br> {{ field }}
+      <label for="{{ field.label }}">{% if field.field.required %}<span class="special_class" style="vertical-align:sub">*</span>{% endif %} {{ field.label_tag }}</label>
+      <br>
+      {{ field }}
       {% for error in field.errors %}
         <p style="color: red">{{ error |safe }}</p>
       {% endfor %}

@@ -7,11 +7,11 @@ from django.contrib.admin.widgets import AdminDateWidget
 from .models import *
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=50, required=False, help_text='Opcional.', widget=forms.TextInput(attrs={'class':'form-control'}))
-    last_name = forms.CharField(max_length=50, required=False, help_text='Opcional.', widget=forms.TextInput(attrs={'class':'form-control'}))
-    segundo_apellido = forms.CharField(max_length=50, required=False, help_text='Opcional.', widget=forms.TextInput(attrs={'class':'form-control'}))
-    email = forms.EmailField(max_length=254, help_text='Requerido. Ingrese un email válido.', widget=forms.EmailInput(attrs={'class':'form-control'}))
-    fecha_nacimiento = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control datepicker-register'}))
+    first_name = forms.CharField(max_length=50, required=True, widget=forms.TextInput(attrs={'class':'form-control'}))
+    last_name = forms.CharField(max_length=50, required=True, widget=forms.TextInput(attrs={'class':'form-control'}))
+    segundo_apellido = forms.CharField(max_length=50, required=True, widget=forms.TextInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(max_length=254, help_text='Requerido. Ingrese un email válido.', widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder': 'email@example.com'}))
+    fecha_nacimiento = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control datepicker-register', 'placeholder': '1993-01-10'}))
     genero = forms.ChoiceField(choices=GENERO, widget=forms.Select(attrs={'class':'form-control'}))
     telefono = forms.CharField(max_length=50, required=False, help_text='Opcional.', widget=forms.TextInput(attrs={'class':'form-control'}))
     estado_civil = forms.ChoiceField(choices=ESTADO_CIVL, widget=forms.Select(attrs={'class':'form-control'}))
@@ -53,7 +53,7 @@ class HabitsAntecedentsForm(ModelForm):
     tabaquismo = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
     diabetes = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
     hipertension = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
-    iam = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
+    iam = forms.ChoiceField(label='Infarto agudo al miocardio (iam)', choices=CHOICES, widget=forms.RadioSelect())
     class Meta:
         model = HabitsAntecedents
         fields = ('tabaquismo', 'diabetes', 'hipertension', 'iam')

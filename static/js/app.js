@@ -94,5 +94,10 @@
 		} else {
 			$('#footer').attr("style","background-color:#41B6A6");
 		}
+
+		window.onload = function() {
+			$('.loader').removeClass('loader');
+			$('#graficas').removeClass('invisible');
+		}
 	});
 })(jQuery);

@@ -32,7 +32,7 @@
       <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-answers" role="tabpanel" aria-labelledby="pills-answers-tab">
           <div class="col col-md-12">
-            <div class="row">
+            <div class="row result-examens">
               <div class="col col-md-6 col-lg-6">
 								{% calculateRCV test.paciente test.seguimiento as calRCV %}
                 <p>
@@ -61,11 +61,11 @@
           <div class="col col-md-12">
             <div class="row">
               {% for cat in test.calcularByLipidCategorias %}
-                <div class="col col-md-12">
+                <div class="col-12 col-md-12">
                   <p>
                     {{cat.cat_nombre}}: <span>{{cat.points}} pts</span>
                   </p>
-                  <p>{{cat.observaciones}}</p>
+                  <p><span>{{cat.observaciones}}</span></p>
                   <hr>
                 </div>
               {% endfor %}
@@ -73,6 +73,11 @@
           </div>
         </div>
       </div>
+			<div class="row justify-content-md-center">
+				<div class="col col-md-6 col-lg-6 return">
+		        <a href="{% url 'lipidicos' %}" class="btn btn-danger text-center ">Regresar</a>
+		    </div>
+			</div>
 		</div>
 	</div>
 </div>

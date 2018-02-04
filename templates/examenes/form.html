@@ -32,7 +32,20 @@
       {% endfor %}
     </div>
     {% endfor %}
-    <button type="submit">Guardar</button>
+    <div class="row">
+      <div class="col col-md-6 col-lg-6">
+        <button type="submit">Guardar</button>
+      </div>
+      {% if title == 'Test ASA' %}
+        <div class="col col-md-6 col-lg-6">
+          <a href="{% url 'testsasa' %}" class="btn btn-danger text-center">Cancelar</a>
+        </div>
+      {% else %}
+        <div class="col col-md-6 col-lg-6">
+          <a href="{% url 'lipidicos' %}" class="btn btn-danger text-center">Cancelar</a>
+        </div>
+      {% endif %}
+    </div>
   </form>
 </div>
 {% endblock %}

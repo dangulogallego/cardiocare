@@ -3,20 +3,21 @@
 {% block content %}
   {# container #}
   <div id="graphics-content" class="col col-md-10 col-lg-8">
-    <div class="gp1">
-      <div id="chartLinear"></div>
-      <p class="pearson">
-        El valor de la correlación es de: {{pearson}}
-      </p>
+    <div class="loader"></div>
+    <div id="graficas" class="invisible">
+      <div class="gp1">
+        <div id="chartLinear"></div>
+        <p class="pearson">
+          El valor de la correlación es de: {{pearson}}
+        </p>
+      </div>
+      {% calculateAvE pacientes as gp2 %}
+      <div class="gp2">
+        <div id="chart_div"></div>
+      </div>
+      {% calculateRvE pacientes as gp3 %}
+      <div id="chart2_div"></div>
     </div>
-
-    {% calculateAvE pacientes as gp2 %}
-    <div class="gp2">
-      <div id="chart_div"></div>
-    </div>
-
-    {% calculateRvE pacientes as gp3 %}
-    <div id="chart2_div"></div>
   </div>
   {% googlecharts %}
   {% endgooglecharts %}
@@ -67,10 +68,10 @@
   var datagp2 = [
     ["18-34"],
     ["35-39"],
-    ["40-45"],
-    ["45-50"],
-    ["50-55"],
-    ["55-60"],
+    ["40-44"],
+    ["45-49"],
+    ["50-54"],
+    ["55-59"],
     ["60-65"],
   ];
 
@@ -120,10 +121,10 @@
   var datagp3 = [
     ["18-34"],
     ["35-39"],
-    ["40-45"],
-    ["45-50"],
-    ["50-55"],
-    ["55-60"],
+    ["40-44"],
+    ["45-49"],
+    ["50-54"],
+    ["55-59"],
     ["60-65"],
   ];
 
@@ -161,8 +162,7 @@
     };
 
     var chart = new google.visualization.ColumnChart(
-      document.getElementById('chart2_div'));
-
+    document.getElementById('chart2_div'));
     chart.draw(data2, options2);
   }
 </script>

@@ -11,10 +11,10 @@
 					<th>#</th>
 					<th>Codigo Paciente</th>
 					<th>Nombre</th>
-					<th>Apellido</th>
-					<th>Segundo Apellido</th>
+					<th>Primer Apellido</th>
 					<th>Fecha Nacimiento</th>
 					<th>Regimen Salud</th>
+					<th>Facultad</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,9 +24,9 @@
 						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.cod_paciente}}</a></th>
 						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.nombre}}</a></th>
 						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.primer_apellido}}</a></th>
-						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.segundo_apellido}}</a></th>
 						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.fecha_nacimiento}}</a></th>
 						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.regimen_salud}}</a></th>
+						<th><a href="{% url 'detallepaciente' paciente_pk=paciente.pk %}">{{paciente.facultad}}</a></th>
 					</tr>
 				{% endfor %}
 			</tbody>
