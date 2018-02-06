@@ -192,8 +192,8 @@ def send_mail_lipid (paciente, seguimiento):
                 {
                     "to": [
                         {
-                            "email": "diegofer_1018@hotmail.com"
-                            # "email":  paciente.user.email
+                            # "email": "diegofer_1018@hotmail.com"
+                            "email":  paciente.user.email
                         }
                     ],
                     "substitutions": {
@@ -217,10 +217,10 @@ def send_mail_lipid (paciente, seguimiento):
         }
         try:
             print("Send SendGrid")
-            # response = sg.client.mail.send.post(request_body=data)
-            # print(response.status_code)
-            # print(response.body)
-            # print(response.headers)
+            response = sg.client.mail.send.post(request_body=data)
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
         except urllib.HTTPError as e:
             print (e.read())
             exit()
