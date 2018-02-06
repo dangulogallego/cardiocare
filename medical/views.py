@@ -57,11 +57,9 @@ def graphics(request):
         promY = y / n
         sx = math.sqrt((x2/n) - math.pow(promX, 2))
         sy = math.sqrt((y2/n) - math.pow(promY, 2))
-        # rxy = ((xy / n) - (promX * promY)) / (sx * sy)
-        rxy = 0
-        print data
-        print rxy
-        return render(request, 'graphics/index.html', {'values': [[80,23], [37, 53], [72, 40], [24, 91]], 'pacientes': pacientes, 'pearson': rxy})
+        rxy = ((xy / n) - (promX * promY)) / (sx * sy)
+        # return render(request, 'graphics/index.html', {'values': [[80,23], [37, 53], [72, 40], [24, 91]], 'pacientes': pacientes, 'pearson': rxy})
+        return render(request, 'graphics/index.html', {'values': data, 'pacientes': pacientes, 'pearson': rxy})
     else:
         return redirect('login')
 
@@ -219,10 +217,10 @@ def send_mail_lipid (paciente, seguimiento):
         }
         try:
             print("Send SendGrid")
-            response = sg.client.mail.send.post(request_body=data)
-            print(response.status_code)
-            print(response.body)
-            print(response.headers)
+            # response = sg.client.mail.send.post(request_body=data)
+            # print(response.status_code)
+            # print(response.body)
+            # print(response.headers)
         except urllib.HTTPError as e:
             print (e.read())
             exit()

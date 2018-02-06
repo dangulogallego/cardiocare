@@ -5,7 +5,7 @@
   <form method="post" id="registerForm" class="row">
     {% csrf_token %}
     {% for field in form %}
-    <div class="col-6 col-sm-6 col-md-4 _field">
+    <div class="col-12 col-sm-6 col-md-4 _field">
       <label for="{{ field.label }}">{% if field.field.required %}<span class="special_class" style="vertical-align:sub">*</span>{% endif %} {{ field.label_tag }}</label>
       <br>
       {{ field }}
